@@ -10,7 +10,7 @@ public class BasicEnemy_Controler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        cc.GetComponent<CharacterController>();
+        cc = gameObject.GetComponent<CharacterController>();
 	}
 	
 	// Update is called once per frame
@@ -18,5 +18,6 @@ public class BasicEnemy_Controler : MonoBehaviour {
         Vector3 v = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
         cc.Move(v * Time.deltaTime);
         cc.SimpleMove(Physics.gravity);
+        //Debug.Log(v);
 	}
 }
