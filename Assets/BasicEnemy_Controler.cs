@@ -5,7 +5,7 @@ using System.Collections;
 [RequireComponent(typeof(CharacterController))]
 public class BasicEnemy_Controler : MonoBehaviour {
 
-    public float velocity = 8f;
+    public float velocity = 6f;
     Vector3 movement = new Vector3(0f,0f,0f);
     CharacterController cc;
 
