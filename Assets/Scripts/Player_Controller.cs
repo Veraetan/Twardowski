@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Player_Controller : MonoBehaviour {
     Vector3 movement;
+    public bool facing_right;
     public byte health;
     public byte health_max;
     public byte jumps;
@@ -16,7 +17,7 @@ public class Player_Controller : MonoBehaviour {
         jumps_max = 2;
         jumps = jumps_max;
         charCtrl = gameObject.GetComponent<CharacterController>();
-
+        facing_right = true;
     }
 	
 	// Update is called once per frame
@@ -24,6 +25,11 @@ public class Player_Controller : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.D))
         {
             movement += new Vector3(8f, 0f, 0f);
+            if (!facing_right)
+            {
+                gameObject.transform.Rotate(new Vector3(0f, 180f, 0f));
+                facing_right = true;
+            }
             //Debug.Log(movement);
         }
         if (Input.GetKeyUp(KeyCode.D))
@@ -34,6 +40,12 @@ public class Player_Controller : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.A))
         {
             movement += new Vector3(-8f, 0f, 0f);
+            if (facing_right)
+            {
+                gameObject.transform.Rotate(new Vector3(0f, -180f, 0f));
+                facing_right = false;
+            }
+                
             //Debug.Log(movement);
         }
         if (Input.GetKeyUp(KeyCode.A))
