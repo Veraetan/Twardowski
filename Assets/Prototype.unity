@@ -188,7 +188,7 @@ GameObject:
   - 33: {fileID: 335009539}
   - 23: {fileID: 335009538}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: BasicEnemy_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ed2a125ceaab6b4386c0546aec62437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 20
+  velocity: 6
 --- !u!143 &656732862
 CharacterController:
   m_ObjectHideFlags: 0
@@ -452,7 +452,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1469247704}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb212a6047f19dd46a95f4ab25f8aff6, type: 3}
+  m_Script: {fileID: 11500000, guid: 199ae5cf2f9db144e8a86c837849ae7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
@@ -666,4 +666,4 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
