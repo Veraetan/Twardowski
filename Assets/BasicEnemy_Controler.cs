@@ -36,7 +36,12 @@ public class BasicEnemy_Controler : MonoBehaviour {
         {
             movement.x = 0f;
         }
-        
+
+        /*
+        if (gameObject.transform.position.z != 0f)
+            gameObject.transform.position.Set(gameObject.transform.position.x, gameObject.transform.position.y, 0);*/
+
+
         cc.Move(movement * Time.deltaTime);
         cc.SimpleMove(Physics.gravity);
 	}
