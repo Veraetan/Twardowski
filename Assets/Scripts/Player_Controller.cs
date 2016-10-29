@@ -72,5 +72,6 @@ public class Player_Controller : MonoBehaviour {
             movement.y = -10f;
             jumps = jumps_max;
         }
+
     }
 }
