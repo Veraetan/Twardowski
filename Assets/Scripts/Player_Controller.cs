@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Player_Controller : MonoBehaviour {
     Vector3 movement;
-    public bool facing_right;
+    Animator anim;
+    bool facing_right;
     public byte health;
     public byte health_max;
     public byte jumps;
@@ -11,12 +12,13 @@ public class Player_Controller : MonoBehaviour {
     CharacterController charCtrl;
 	// Use this for initialization
 	void Start () {
+        anim = GetComponentInChildren<Animator>();
         movement = new Vector3(0f, -10f, 0f);
         health_max = 100;
         health = health_max;
         jumps_max = 2;
         jumps = jumps_max;
-        charCtrl = gameObject.GetComponent<CharacterController>();
+        charCtrl = GetComponent<CharacterController>();
         facing_right = true;
     }
 	
@@ -27,7 +29,7 @@ public class Player_Controller : MonoBehaviour {
             movement += new Vector3(8f, 0f, 0f);
             if (!facing_right)
             {
-                gameObject.transform.Rotate(new Vector3(0f, 180f, 0f));
+                transform.Rotate(new Vector3(0f, 180f, 0f));
                 facing_right = true;
             }
             //Debug.Log(movement);
@@ -42,7 +44,7 @@ public class Player_Controller : MonoBehaviour {
             movement += new Vector3(-8f, 0f, 0f);
             if (facing_right)
             {
-                gameObject.transform.Rotate(new Vector3(0f, -180f, 0f));
+                transform.Rotate(new Vector3(0f, -180f, 0f));
                 facing_right = false;
             }
                 
@@ -67,6 +69,18 @@ public class Player_Controller : MonoBehaviour {
         
         //Debug.Log(charCtrl.isGrounded);
         charCtrl.Move(movement*Time.deltaTime);
+        //Debug.Log(Input.GetAxis("Horizontal"));
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
+        {
+            anim.SetFloat("SpeedMod", 2);
+            anim.SetFloat("Speed", 1);
+        }
+        else
+        {
+            anim.SetFloat("SpeedMod", 1);
+            anim.SetFloat("Speed", 0);
+        }
+
         if (charCtrl.isGrounded)
         {
             movement.y = -10f;
