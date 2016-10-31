@@ -24,37 +24,26 @@ public class Player_Controller : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.D))
+
+        if (Input.GetAxis("Horizontal")!=0)
         {
-            movement += new Vector3(8f, 0f, 0f);
-            if (!facing_right)
+            movement.x = Input.GetAxis("Horizontal")*8f;
+            if (Input.GetAxis("Horizontal")==-1 && facing_right)
+            {
+                transform.Rotate(new Vector3(0f, 180f, 0f));
+                facing_right = false;
+            }
+            else if (Input.GetAxis("Horizontal") == 1 && !facing_right)
             {
                 transform.Rotate(new Vector3(0f, 180f, 0f));
                 facing_right = true;
             }
-            //Debug.Log(movement);
         }
-        if (Input.GetKeyUp(KeyCode.D))
+        else
         {
-            movement -= new Vector3(8f, 0f, 0f);
-            //Debug.Log(movement);
+            movement.x = 0f;
         }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            movement += new Vector3(-8f, 0f, 0f);
-            if (facing_right)
-            {
-                transform.Rotate(new Vector3(0f, -180f, 0f));
-                facing_right = false;
-            }
-                
-            //Debug.Log(movement);
-        }
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            movement -= new Vector3(-8f, 0f, 0f);
-            //Debug.Log(movement);
-        }
+
         if (Input.GetKeyDown(KeyCode.W)&&jumps!=0)
         {
             movement.y = 10f;
@@ -70,7 +59,7 @@ public class Player_Controller : MonoBehaviour {
         //Debug.Log(charCtrl.isGrounded);
         charCtrl.Move(movement*Time.deltaTime);
         //Debug.Log(Input.GetAxis("Horizontal"));
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
+        if (Input.GetAxis("Horizontal")!=0f)
         {
             anim.SetFloat("SpeedMod", 2);
             anim.SetFloat("Speed", 1);
