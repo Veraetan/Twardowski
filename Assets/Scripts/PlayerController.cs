@@ -1,18 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player_Controller : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
     Vector3 movement;
-    Animator anim;
+    
     bool facing_right;
     public byte health;
     public byte health_max;
     public byte jumps;
     public byte jumps_max;
     CharacterController charCtrl;
-	// Use this for initialization
-	void Start () {
-        anim = GetComponentInChildren<Animator>();
+    // Use this for initialization
+    void Start()
+    {
+        
         movement = new Vector3(0f, -10f, 0f);
         health_max = 100;
         health = health_max;
@@ -21,14 +23,15 @@ public class Player_Controller : MonoBehaviour {
         charCtrl = GetComponent<CharacterController>();
         facing_right = true;
     }
-	
-	// Update is called once per frame
-	void Update () {
 
-        if (Input.GetAxis("Horizontal")!=0)
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (Input.GetAxis("Horizontal") != 0)
         {
-            movement.x = Input.GetAxis("Horizontal")*8f;
-            if (Input.GetAxis("Horizontal")==-1 && facing_right)
+            movement.x = Input.GetAxis("Horizontal") * 8f;
+            if (Input.GetAxis("Horizontal") == -1 && facing_right)
             {
                 transform.Rotate(new Vector3(0f, 180f, 0f));
                 facing_right = false;
@@ -44,37 +47,29 @@ public class Player_Controller : MonoBehaviour {
             movement.x = 0f;
         }
 
-        if (Input.GetKeyDown(KeyCode.W)&&jumps!=0)
+        if (Input.GetKeyDown(KeyCode.W) && jumps != 0)
         {
             movement.y = 10f;
             jumps--;
-            //Debug.Log(movement);
+
         }
-        if (movement.y>-10f)
+        if (movement.y > -10f)
         {
-            movement += new Vector3(0f, -20f*Time.deltaTime, 0f);
-            
-        }
-        
-        //Debug.Log(charCtrl.isGrounded);
-        charCtrl.Move(movement*Time.deltaTime);
-        //Debug.Log(Input.GetAxis("Horizontal"));
-        if (Input.GetAxis("Horizontal")!=0f)
-        {
-            anim.SetFloat("SpeedMod", 2);
-            anim.SetFloat("Speed", 1);
-        }
-        else
-        {
-            anim.SetFloat("SpeedMod", 1);
-            anim.SetFloat("Speed", 0);
+            movement += new Vector3(0f, -20f * Time.deltaTime, 0f);
+
         }
 
+        charCtrl.Move(movement * Time.deltaTime);
+        //Check that needs to be after movement was done so char doesnt get stuck.
         if (charCtrl.isGrounded)
         {
             movement.y = -10f;
             jumps = jumps_max;
         }
 
+        //Debug.Log(Input.GetAxis("Horizontal"));
+
+
     }
+    
 }
