@@ -21,8 +21,8 @@ public class SwordAttack : MonoBehaviour
         if (other.tag == "Enemy")
         {
             Debug.Log("Hit enemy!");
-            
+            Destroy(other.gameObject);
         }
-        Destroy(other.gameObject);
+        
     }
 }

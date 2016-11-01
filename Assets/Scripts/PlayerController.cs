@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     Vector3 movement;
     
     bool facing_right;
+    public int score;
     public byte health;
     public byte health_max;
     public byte jumps;
@@ -14,7 +15,7 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
+        score = 0;
         movement = new Vector3(0f, -10f, 0f);
         health_max = 100;
         health = health_max;
@@ -68,8 +69,21 @@ public class PlayerController : MonoBehaviour
         }
 
         //Debug.Log(Input.GetAxis("Horizontal"));
-
+        
 
     }
-    
+    public void addHealth(GameObject o, byte add)
+    {
+        if (health < health_max)
+        {
+            Destroy(o);
+            health += add;
+            if (health > health_max) health = health_max;
+        }
+    }
+    public void addScore(GameObject o, int add)
+    {
+        score += add;
+        Destroy(o);
+    }
 }
