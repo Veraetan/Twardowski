@@ -4,9 +4,11 @@ using System.Collections;
 public class SwordAttack : MonoBehaviour
 {
     public GameObject parent;
+    public bool attacking;
     // Use this for initialization
     void Start()
     {
+        attacking = false;
         Physics.IgnoreCollision(parent.GetComponent<Collider>(), GetComponent<Collider>());
     }
 
@@ -18,7 +20,7 @@ public class SwordAttack : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Enemy" && attacking)
         {
             Debug.Log("Hit enemy!");
             Destroy(other.gameObject);

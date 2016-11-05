@@ -26,11 +26,13 @@ public class PickupController : MonoBehaviour {
         {
             if (ptype == PickType.Crystal)
             {
-                other.gameObject.GetComponent<PlayerController>().addHealth(this.gameObject, 15);
+                other.gameObject.GetComponent<PlayerController>().addHealth(15);
+                Destroy(this.gameObject);
             }
             if (ptype == PickType.Treasure)
             {
-                other.gameObject.GetComponent<PlayerController>().addScore(this.gameObject, 250);
+                other.gameObject.GetComponent<PlayerController>().addScore(250);
+                Destroy(this.gameObject);
             }
         }
     }

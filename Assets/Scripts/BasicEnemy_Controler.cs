@@ -10,7 +10,7 @@ public class BasicEnemy_Controler : MonoBehaviour {
     private float gravity = 10f;
     private float vSpeed = 0f;
     public byte max_health;
-    public byte health;
+    public short health;
     private bool jump;
     
     CharacterController cc;
@@ -78,20 +78,20 @@ public class BasicEnemy_Controler : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, chaseDir/chaseDir.magnitude, out hit, 1.5f))
         {
-            if(!hit.collider.gameObject.transform.IsChildOf(player.transform))
+            if(hit.collider.tag!="Player")
                 jump = true;
         }
 
         if (distance <= 1.5f)
         {
-            Debug.Log("Attacking Player");
+            //Debug.Log("Attacking Player");
 
             //attacking player code
 
-            if(player.GetComponent<PlayerController>().health >= 0)
-                player.GetComponent<PlayerController>().health -= 10;
+            if (player.GetComponent<PlayerController>().health > 0)
+                player.GetComponent<PlayerController>().addHealth(-1);
 
-            Debug.Log(player.GetComponent<PlayerController>().health);
+            //Debug.Log(player.GetComponent<PlayerController>().health);
 
             vSpeed -= gravity * Time.deltaTime;
 
