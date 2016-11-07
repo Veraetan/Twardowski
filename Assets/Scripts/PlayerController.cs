@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     
     bool facing_right;
     public int score;
-    public byte health;
+    public short health;
     public byte health_max;
     public byte jumps;
     public byte jumps_max;
@@ -72,18 +72,23 @@ public class PlayerController : MonoBehaviour
         
 
     }
-    public void addHealth(GameObject o, byte add)
+    public void addHealth(short add)
     {
-        if (health < health_max)
+        if (health > 0)
         {
-            Destroy(o);
             health += add;
-            if (health > health_max) health = health_max;
+            if (health <= 0)
+            {
+                health = 0;
+                Debug.Log("Player Died");
+                
+            }
+            else if (health > health_max)
+                health = health_max;
         }
     }
-    public void addScore(GameObject o, int add)
+    public void addScore(int add)
     {
         score += add;
-        Destroy(o);
     }
 }
