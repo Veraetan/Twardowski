@@ -29,8 +29,9 @@ public class BasicEnemy_Controler : MonoBehaviour {
     void FixedUpdate () {
 
         Vector3 chaseDir = player.transform.position - transform.position;
+        Vector3 Dir = chaseDir;
         chaseDir.y = 0;
-        float distance = chaseDir.magnitude;
+        float distance = Dir.magnitude;
 
         RaycastHit hit;
         if (Physics.Raycast(transform.position, chaseDir/chaseDir.magnitude, out hit, 1.5f))    //check if there is an obstacle on your way
@@ -66,9 +67,10 @@ public class BasicEnemy_Controler : MonoBehaviour {
             chaseDir = chaseDir.normalized * runSpeed;
             chaseDir.y += vSpeed;
 
-            cc.Move(chaseDir * Time.deltaTime);
+            if(distance<=10f)
+                cc.Move(chaseDir * Time.deltaTime);
         }
-
+        
         //face the player
         var lookPos = player.transform.position - transform.position;
         lookPos.y = 0;
