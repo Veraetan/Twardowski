@@ -29,7 +29,7 @@ public class BasicEnemy_Controler : MonoBehaviour {
     void FixedUpdate () {
 
         Vector3 chaseDir = player.transform.position - transform.position;
-        //chaseDir.y = 0;
+        chaseDir.y = 0;
         float distance = chaseDir.magnitude;
 
         RaycastHit hit;
@@ -67,14 +67,6 @@ public class BasicEnemy_Controler : MonoBehaviour {
             chaseDir.y += vSpeed;
 
             cc.Move(chaseDir * Time.deltaTime);
-        }
-
-        if ((cc.collisionFlags & CollisionFlags.Above) != 0)
-        {
-            if (vSpeed >= 0)
-            {
-                vSpeed = -gravity;
-            }
         }
 
         //face the player
