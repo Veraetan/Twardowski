@@ -23,14 +23,13 @@ public class BasicEnemy_Controler : MonoBehaviour {
         max_health = 100;
         health = max_health;
         jump = false;
-        
     }
 	
     void FixedUpdate () {
 
         Vector3 chaseDir = player.transform.position - transform.position;
         Vector3 Dir = chaseDir;
-        chaseDir.y = 0;
+        //chaseDir.y = 0;
         float distance = Dir.magnitude;
 
         RaycastHit hit;
@@ -67,10 +66,20 @@ public class BasicEnemy_Controler : MonoBehaviour {
             chaseDir = chaseDir.normalized * runSpeed;
             chaseDir.y += vSpeed;
 
-            if(distance<=10f)
+            if (distance <= 10f)
                 cc.Move(chaseDir * Time.deltaTime);
+            else
+                cc.Move(new Vector3(0f, vSpeed, 0f) * Time.deltaTime);
         }
-        
+
+        if ((cc.collisionFlags & CollisionFlags.Above) != 0)    //if you hit ceiling, stop moving upwards
+        {
+            if (vSpeed >= 0)
+            {
+                vSpeed = -gravity;
+            }
+        }
+
         //face the player
         var lookPos = player.transform.position - transform.position;
         lookPos.y = 0;
