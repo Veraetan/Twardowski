@@ -29,7 +29,6 @@ public class BasicEnemy_Controler : MonoBehaviour {
 
         Vector3 chaseDir = player.transform.position - transform.position;
         Vector3 Dir = chaseDir;
-        //chaseDir.y = 0;
         float distance = Dir.magnitude;
 
         RaycastHit hit;
