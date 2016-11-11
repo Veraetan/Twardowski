@@ -3,34 +3,23 @@ using System.Collections;
 
 
 [RequireComponent(typeof(CharacterController))]
-public class BasicEnemy_Controler : MonoBehaviour {
+public class BasicEnemy_Controler : CharController {
 
-    public float runSpeed = 6f;
-    private float jumpSpeed = 6f;
-    private float gravity = 10f;
-    private float vSpeed = 0f;
-    public byte max_health;
-    public short health;
     private bool jump;
     
-    CharacterController cc;
     GameObject player;
 
 	// Use this for initialization
 	void Start () {
-        cc = gameObject.GetComponent<CharacterController>();
+        initiate(6, 6, 100, 100, 90);
         player = GameObject.FindGameObjectWithTag("Player");
-        max_health = 100;
-        health = max_health;
         jump = false;
     }
 	
     void FixedUpdate () {
 
         Vector3 chaseDir = player.transform.position - transform.position;
-        Vector3 Dir = chaseDir;
-        //chaseDir.y = 0;
-        float distance = Dir.magnitude;
+        float distance = chaseDir.magnitude;
 
         RaycastHit hit;
         if (Physics.Raycast(transform.position, chaseDir/chaseDir.magnitude, out hit, 1.5f))    //check if there is an obstacle on your way
@@ -45,46 +34,26 @@ public class BasicEnemy_Controler : MonoBehaviour {
             if (player.GetComponent<PlayerController>().health > 0)     //... and the player is not dead...
                 player.GetComponent<PlayerController>().addHealth(-1);  //attack him
 
-            vSpeed -= gravity * Time.deltaTime;
-
-            cc.Move(new Vector3(0f, vSpeed, 0f) * Time.deltaTime);
+            addSpd(direction.hor, 0);
         }
         else
         {
             if (cc.isGrounded)  //if monster is on the ground...
             {
-                vSpeed = 0;
                 if (jump)   //...and should jump...
                 {
-                    vSpeed = jumpSpeed;     //then jump
+                    addSpd(direction.ver, 1);     //then jump
                     jump = false;
                 }
             }
 
-            vSpeed -= gravity * Time.deltaTime;
-
-            chaseDir = chaseDir.normalized * runSpeed;
-            chaseDir.y += vSpeed;
-
             if (distance <= 10f)
-                cc.Move(chaseDir * Time.deltaTime);
+                addSpd(direction.hor, chaseDir.normalized.x);
             else
-                cc.Move(new Vector3(0f, vSpeed, 0f) * Time.deltaTime);
+                addSpd(direction.hor, 0);
         }
 
-        if ((cc.collisionFlags & CollisionFlags.Above) != 0)    //if you hit ceiling, stop moving upwards
-        {
-            if (vSpeed >= 0)
-            {
-                vSpeed = -gravity;
-            }
-        }
-
-        //face the player
-        var lookPos = player.transform.position - transform.position;
-        lookPos.y = 0;
-        var rotation = Quaternion.LookRotation(lookPos);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 180);
+        move();
 
     }
     
