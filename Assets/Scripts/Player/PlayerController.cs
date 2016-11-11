@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerController : CharController
 {
-
+    bool left;
     public int score;
     public byte jumps;
     public byte jumps_max;
@@ -12,6 +12,7 @@ public class PlayerController : CharController
 
     void Start()
     {
+        left = false;
         initiate(8, 10, 100, 100, 0);
         score = 0;
         jumps_max = 2;
@@ -21,13 +22,28 @@ public class PlayerController : CharController
 
     void Update()
     {
-        addSpd(direction.hor, Input.GetAxis("Horizontal"));
 
         if (jumps != 0 && Input.GetButtonDown("Jump"))
         {
             addSpd(direction.ver, 1);
             jumps--;
         }
+        else if(cc.velocity.y<0 && Input.GetButton("Jump"))
+        {
+            if (Input.GetAxis("Horizontal") > 0)
+                left = false;
+            else if(Input.GetAxis("Horizontal") < 0)
+                left = true;
+
+            if (left)
+                addSpd(direction.hor, -1);
+            else
+                addSpd(direction.hor, 1);
+
+            addSpd(direction.ver, -1, 1);
+        }
+        else
+            addSpd(direction.hor, Input.GetAxis("Horizontal"));
     }
 
     // Update is called once per frame
