@@ -3,18 +3,11 @@ using System.Collections;
 
 public class Firestrike_piece : MonoBehaviour {
 
-    public float lifetime = 2;
-
-	// Use this for initialization
+    public float lifetime = 3;
+    
 	void Start () {
-
-        Physics.IgnoreLayerCollision(10,11,true);
+        
         Destroy(gameObject, lifetime);
     }
-	
-	// Update is called once per frame
-	void Update () {
-	    
-	}
     
 }

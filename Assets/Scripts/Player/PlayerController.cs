@@ -55,6 +55,8 @@ public class PlayerController : CharController
         {
             jumps = jumps_max;
         }
+
+        if (Input.GetKeyDown(KeyCode.E)) { gameObject.GetComponent<FireStrike>().cast(); }
     }
 
     public void addHealth(short add)

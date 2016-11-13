@@ -186,7 +186,7 @@ GameObject:
   - 4: {fileID: 4000010447589218}
   - 143: {fileID: 143000014133488010}
   - 114: {fileID: 114000011580509550}
-  - 114: {fileID: 114000010360016920}
+  - 114: {fileID: 114000013506024986}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -1988,19 +1988,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114000010360016920
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010930337466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86f6e39b0dedb0042a3f52a3ac7e8c02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firestrikePrefab: {fileID: 54000010079956908, guid: 3a9e20b473fd471498bf70e35991a985,
-    type: 2}
 --- !u!114 &114000011321674102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2038,11 +2025,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f02c73c7d2ada4fa10ea4b698f5836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
   health: 0
   health_max: 0
+  score: 0
   jumps: 0
   jumps_max: 0
+--- !u!114 &114000013506024986
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010930337466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86f6e39b0dedb0042a3f52a3ac7e8c02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firestrikePrefab: {fileID: 54000010079956908, guid: 3a9e20b473fd471498bf70e35991a985,
+    type: 2}
+  miniCooldownTime: 0.02
+  numberOfPieces: 12
 --- !u!137 &137000014029516272
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

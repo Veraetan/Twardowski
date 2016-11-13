@@ -119,9 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ed2a125ceaab6b4386c0546aec62437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 6
-  max_health: 0
   health: 0
+  health_max: 0
 --- !u!143 &143000010896050728
 CharacterController:
   m_ObjectHideFlags: 1
