@@ -6,18 +6,18 @@ public class PlayerAnimation : MonoBehaviour {
     Animator anim;
     public Transform shoulder;
     public Animation a;
-    CharacterController charCtrl;
+    CharacterController cc;
     bool attacked;
 	// Use this for initialization
 	void Start () {
-        charCtrl = GetComponentInParent<CharacterController>();
+        cc = GetComponentInParent<CharacterController>();
         anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        anim.SetBool("Grounded", charCtrl.isGrounded);
-        if (charCtrl.velocity.x != 0)
+        anim.SetBool("Grounded", cc.isGrounded);
+        if (cc.velocity.x != 0)
         {
             anim.SetFloat("SpeedMod", 2);
             anim.SetFloat("Speed", 1);
