@@ -32,7 +32,6 @@ public class BasicEnemy_Controler : CharController {
         {
 
             GetComponent<ImpAttack>().attack(player);
-
             addSpd(direction.hor, 0);
         }
         else
