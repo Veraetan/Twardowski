@@ -6,18 +6,19 @@ using System.Collections;
 public class BasicEnemy_Controler : CharController {
 
     private bool jump;
-    
+    int time;
     GameObject player;
 
 	// Use this for initialization
 	void Start () {
-        initiate(6, 6, 100, 100, 90);
+        initiate(6, 6, 50, 50, 90);
         player = GameObject.FindGameObjectWithTag("Player");
         jump = false;
+        time = 0;
     }
 	
     void FixedUpdate () {
-
+        time++;
         Vector3 chaseDir = player.transform.position - transform.position;
         float distance = chaseDir.magnitude;
 
@@ -31,9 +32,11 @@ public class BasicEnemy_Controler : CharController {
         if (distance <= 1.5f)   //if the player is close...
         {
 
-            if (player.GetComponent<PlayerController>().health > 0)     //... and the player is not dead...
-                player.GetComponent<PlayerController>().addHealth(-1);  //attack him
-
+            if (player.GetComponent<PlayerController>().health > 0 && time > 50)     //... and the player is not dead...
+            {
+                player.GetComponent<PlayerController>().addHealth(-10);  //attack him
+                time = 0;
+            }
             addSpd(direction.hor, 0);
         }
         else
@@ -56,5 +59,7 @@ public class BasicEnemy_Controler : CharController {
         move();
 
     }
+
     
+
 }

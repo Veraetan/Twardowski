@@ -9,7 +9,6 @@ public class Camera_Controller : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         diff = player.transform.position;
 
-        Physics.IgnoreLayerCollision(10, 11, true);
         Physics.IgnoreLayerCollision(10, 10, true);
     }
 	

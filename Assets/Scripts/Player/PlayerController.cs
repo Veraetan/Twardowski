@@ -8,6 +8,7 @@ public class PlayerController : CharController
     public byte jumps;
     public byte jumps_max;
     CharacterController charCtrl;
+    public Canvas GUI;
     // Use this for initialization
 
     void Start()
@@ -22,6 +23,10 @@ public class PlayerController : CharController
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
 
         if (jumps != 0 && Input.GetButtonDown("Jump"))
         {
@@ -44,6 +49,9 @@ public class PlayerController : CharController
         }
         else
             addSpd(direction.hor, Input.GetAxis("Horizontal"));
+
+        GUI.GetComponent<Score>().score = score;
+        GUI.GetComponent<Score>().health = health;
     }
 
     // Update is called once per frame
@@ -59,7 +67,7 @@ public class PlayerController : CharController
         if (Input.GetKeyDown(KeyCode.E)) { gameObject.GetComponent<FireStrike>().cast(); }
     }
 
-    public void addHealth(short add)
+    public new void addHealth(short add)
     {
         if (health > 0)
         {

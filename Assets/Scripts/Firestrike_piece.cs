@@ -9,5 +9,11 @@ public class Firestrike_piece : MonoBehaviour {
         
         Destroy(gameObject, lifetime);
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Enemy")
+            other.gameObject.GetComponent<CharController>().addHealth(-5);
+    }
     
 }
