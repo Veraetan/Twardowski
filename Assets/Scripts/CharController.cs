@@ -69,4 +69,20 @@ public class CharController : MonoBehaviour {
             movement.y = 0;
 
     }
+
+    public void addHealth(short add)
+    {
+        if (health > 0)
+        {
+            health += add;
+            if (health <= 0)
+            {
+                health = 0;
+                Debug.Log("Enemy died");
+                Destroy(gameObject);
+            }
+            else if (health > health_max)
+                health = health_max;
+        }
+    }
 }
