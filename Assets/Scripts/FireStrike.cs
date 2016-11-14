@@ -11,7 +11,7 @@ public class FireStrike : Ability {
     private bool sequenceEnded;
 
 	void Start () {
-        Initialize(4, 1, 0);
+        Initialize(4, 1.5f, 0);
         piecesLeft = numberOfPieces;
         sequenceEnded = true;
 	}

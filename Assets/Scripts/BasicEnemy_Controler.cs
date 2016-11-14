@@ -31,8 +31,7 @@ public class BasicEnemy_Controler : CharController {
         if (distance <= 1.5f)   //if the player is close...
         {
 
-            if (player.GetComponent<PlayerController>().health > 0)     //... and the player is not dead...
-                player.GetComponent<PlayerController>().addHealth(-1);  //attack him
+            GetComponent<ImpAttack>().attack(player);
 
             addSpd(direction.hor, 0);
         }
