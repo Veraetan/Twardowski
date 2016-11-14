@@ -9,7 +9,7 @@ public class Score : MonoBehaviour {
     Text text;
 	// Use this for initialization
 	void Start () {
-        text = GetComponent<Text>();
+        text = GetComponentInChildren<Text>();
         score = 0;
         health = 0;
 	}
@@ -17,6 +17,7 @@ public class Score : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         text.text = "Score: " + score + "\nHealth: ";
+        //Debug.Log("s:" + score + " h:" + health);
         if (health <= 0)
             text.text += "DEAD";
         else
