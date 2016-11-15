@@ -11,7 +11,7 @@ public class BasicEnemy_Controler : CharController {
 
 	// Use this for initialization
 	void Start () {
-        initiate(6, 6, 100, 100, 90);
+        initiate(6, 8, 50, 50, 90);
         player = GameObject.FindGameObjectWithTag("Player");
         jump = false;
     }

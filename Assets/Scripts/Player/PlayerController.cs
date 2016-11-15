@@ -45,7 +45,7 @@ public class PlayerController : CharController
             else
                 addSpd(direction.hor, 1);
 
-            addSpd(direction.ver, -1, 1);
+            addSpd(direction.ver, -1, 2);
         }
         else
             addSpd(direction.hor, Input.GetAxis("Horizontal"));
