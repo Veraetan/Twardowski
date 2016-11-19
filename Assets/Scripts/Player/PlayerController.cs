@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerController : CharController
 {
-    bool left;
+    bool left, blocking;
     public int score;
     public byte jumps;
     public byte jumps_max;
@@ -14,6 +14,7 @@ public class PlayerController : CharController
     void Start()
     {
         left = false;
+        blocking = false;
         initiate(8, 10, 100, 100, 0);
         score = 0;
         jumps_max = 2;
@@ -27,6 +28,13 @@ public class PlayerController : CharController
         {
             Application.Quit();
         }
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            blocking = true;
+        }
+        else
+            blocking = false;
 
         if (jumps != 0 && Input.GetButtonDown("Jump"))
         {
@@ -69,7 +77,7 @@ public class PlayerController : CharController
 
     public new void addHealth(short add)
     {
-        if (health > 0)
+        if (health > 0 && !blocking)
         {
             health += add;
             if (health <= 0)
