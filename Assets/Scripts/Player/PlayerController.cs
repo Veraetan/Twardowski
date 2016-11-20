@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerController : CharController
 {
-    bool left, blocking;
+    public bool left, blocking, countering;
     public int score;
     public byte jumps;
     public byte jumps_max;
@@ -13,6 +13,7 @@ public class PlayerController : CharController
 
     void Start()
     {
+        countering = false;
         left = false;
         blocking = false;
         initiate(8, 10, 100, 100, 0);
@@ -29,7 +30,7 @@ public class PlayerController : CharController
             Application.Quit();
         }
 
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButton("Fire2"))
         {
             blocking = true;
         }
@@ -58,8 +59,12 @@ public class PlayerController : CharController
         else
             addSpd(direction.hor, Input.GetAxis("Horizontal"));
 
-        GUI.GetComponent<Score>().score = score;
-        GUI.GetComponent<Score>().health = health;
+        if (GUI != null)
+        {
+            GUI.GetComponent<Score>().score = score;
+            GUI.GetComponent<Score>().health = health;
+        }
+        
     }
 
     // Update is called once per frame
@@ -75,8 +80,9 @@ public class PlayerController : CharController
         if (Input.GetKeyDown(KeyCode.E)) { gameObject.GetComponent<FireStrike>().cast(); }
     }
 
-    public new void addHealth(short add)
+    public void addHealth(short add, GameObject other)
     {
+        
         if (health > 0 && !blocking)
         {
             health += add;
@@ -84,14 +90,20 @@ public class PlayerController : CharController
             {
                 health = 0;
                 Debug.Log("Player Died");
-
+                Application.LoadLevel(Application.loadedLevel);
             }
             else if (health > health_max)
                 health = health_max;
+        }
+        else if (blocking)
+        {
+            other.GetComponent<CharController>().daze();
         }
     }
     public void addScore(int add)
     {
         score += add;
     }
+
+
 }

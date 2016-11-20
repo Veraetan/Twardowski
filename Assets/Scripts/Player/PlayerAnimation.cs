@@ -5,7 +5,6 @@ public class PlayerAnimation : MonoBehaviour {
 
     Animator anim;
     public Transform shoulder;
-    public Animation a;
     CharacterController cc;
     bool attacked;
 	// Use this for initialization

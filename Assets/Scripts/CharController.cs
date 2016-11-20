@@ -3,6 +3,8 @@ using System.Collections;
 
 public class CharController : MonoBehaviour {
 
+    protected bool dazed;
+    protected float dazeTime;
     protected CharacterController cc;
     protected Vector3 movement;
     float moveSpd, jumpSpd;
@@ -16,6 +18,7 @@ public class CharController : MonoBehaviour {
 
     protected void initiate(float ms, float js, short h, short mh, short ro)//how fast it moves, how high it jumps and how tough it is
     {
+        dazed = false;
         rotOffset = ro;
         grav = 20;
         moveSpd = ms;
@@ -60,6 +63,11 @@ public class CharController : MonoBehaviour {
 
     protected void move() //Push yourself in the right direction
     {
+        if (dazed)
+        {
+            addSpd(direction.hor, 0.1f);
+            undaze();
+        }
         cc.Move(movement * Time.deltaTime);
         if (!cc.isGrounded) // Always know on what ground you are standing
             movement.y -= grav * Time.deltaTime;
@@ -84,5 +92,18 @@ public class CharController : MonoBehaviour {
             else if (health > health_max)
                 health = health_max;
         }
+    }
+
+    public void daze()
+    {
+        addSpd(direction.ver, 0.5f);
+        dazed = true;
+        dazeTime = Time.time;
+    }
+
+    void undaze()
+    {
+        if (dazeTime + 2 < Time.time)
+            dazed = false;
     }
 }
