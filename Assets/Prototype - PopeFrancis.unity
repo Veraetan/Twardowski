@@ -225,9 +225,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 147587057}
   - 143: {fileID: 147587056}
+  - 114: {fileID: 147587058}
+  - 114: {fileID: 147587059}
   m_Layer: 0
   m_Name: Fiend
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -242,7 +244,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 1.6
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -256,13 +258,37 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 147587055}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.038169075, y: 3.1281486, z: 0.8125}
+  m_LocalPosition: {x: 0, y: 1.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 802246290}
   m_Father: {fileID: 0}
   m_RootOrder: 12
+--- !u!114 &147587058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 147587055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad82d4a590cc30b4fa1d8844b3d7cedf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  health_max: 0
+--- !u!114 &147587059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 147587055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b57c320756c1a5849a98927714234f6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &150192668
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,7 +678,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 197625d569d0012468d716f2530c3b37, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 197625d569d0012468d716f2530c3b37, type: 3}
       propertyPath: m_LocalPosition.z

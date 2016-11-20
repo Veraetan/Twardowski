@@ -10,6 +10,12 @@ public abstract class BasicEnemy_Controler : CharController {
     protected Vector3 chaseDir;
     protected float distance;
 
+    void Start()
+    {
+        initiate(6, 8, 50, 50, 90);
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     void FixedUpdate()
     {
 
@@ -45,8 +51,6 @@ public abstract class BasicEnemy_Controler : CharController {
     {
         if (distance <= 10f)
             addSpd(direction.hor, chaseDir.normalized.x);
-        else
-            addSpd(direction.hor, 0);
     }
 
     protected void setChaseDir()
@@ -60,7 +64,7 @@ public abstract class BasicEnemy_Controler : CharController {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, 1.5f))    //check if there is an obstacle on your way
         {
-            if (hit.collider.tag != "Player")  //if there is an obstacle - jump
+            if (hit.collider.tag != "Player" && hit.collider.tag != "Enemy")  //if there is an obstacle - jump
                 shouldJump = true;
         }
     }

@@ -6,10 +6,10 @@ using System.Collections;
 
 public class Ability : MonoBehaviour
 {
-    float cooldownTime;         //in seconds
-    float nextUsageTime;
-    float castTime;
-    float range;
+    protected float cooldownTime,         //in seconds
+                    nextUsageTime,
+                    castTime,
+                    range;
    
     protected void Initialize(float cd, float ct, float r)
     {
