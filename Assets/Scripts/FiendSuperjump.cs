@@ -4,7 +4,7 @@ using System.Collections;
 public class FiendSuperjump : Ability {
     
 	void Start () {
-        Initialize(4, 1, 8);
+        Initialize(4, 1, 7);
 	}
 
     public void doSuperjump(GameObject target) {
@@ -21,7 +21,7 @@ public class FiendSuperjump : Ability {
         {
             startCooldown();
             yield return new WaitForSeconds(castTime);
-            GetComponent<FiendController>().shouldSuperjump = true;
+            //GetComponent<FiendController>().shouldSuperjump = true;
         }
         
     }
