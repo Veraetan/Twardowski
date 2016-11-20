@@ -14,7 +14,7 @@ public class ImpAttack : Ability {
         if (target.GetComponent<PlayerController>().health > 0 && isCooldownOver())     //if the player is not dead and the cooldown is over...
         {
             startCooldown();
-            target.GetComponent<PlayerController>().addHealth(-10);  //attack him
+            target.GetComponent<PlayerController>().addHealth(-10, gameObject);  //attack him
 
             Debug.Log("player health: " + target.GetComponent<PlayerController>().health);
         }

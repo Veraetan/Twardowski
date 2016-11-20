@@ -13,7 +13,7 @@ public class FiendAttack : Ability {
         if (target.GetComponent<PlayerController>().health > 0 && isCooldownOver())     //if the player is not dead and the cooldown is over...
         {
             startCooldown();
-            target.GetComponent<PlayerController>().addHealth(-20);  //attack him
+            target.GetComponent<PlayerController>().addHealth(-20, gameObject);  //attack him
 
             Debug.Log("player health: " + target.GetComponent<PlayerController>().health);
         }
