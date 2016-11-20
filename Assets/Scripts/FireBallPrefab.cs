@@ -3,10 +3,20 @@ using System.Collections;
 
 public class FireBallPrefab : MonoBehaviour {
 
+    Vector3 dir;
 	// Use this for initialization
 	void Start () {
-	
-	}
+        Vector3 target = GameObject.FindGameObjectWithTag("Player").transform.position;
+        target.y += 1;
+        Vector3 shooterPos = transform.position;
+        dir = target - shooterPos;
+        dir.Normalize();
+    }
+
+    void FixedUpdate()
+    {
+        GetComponent<Rigidbody>().velocity = dir * 10;
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -25,6 +35,9 @@ public class FireBallPrefab : MonoBehaviour {
             other.gameObject.GetComponent<PlayerController>().addHealth(-15);
             Destroy(gameObject);
         }
-            
+        else if(other.tag != "Enemy")
+        {
+            Destroy(gameObject);
+        }
     }
 }

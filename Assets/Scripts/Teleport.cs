@@ -11,12 +11,7 @@ public class Teleport : Ability {
 	// Update is called once per frame
 	public void teleport(GameObject[] points)
     {
-        GameObject tmp = new GameObject();
-
-        for (int i = 0; i < points.Length; i++)
-        {
-            Debug.Log(points[i].transform.position.magnitude);
-        }
+        GameObject tmp = null;
 
         for(int i = 0; i<points.Length; i++)
         {
@@ -36,10 +31,7 @@ public class Teleport : Ability {
                 points[i] = tmp;
             }
         }
-        for (int i = 0; i < points.Length; i++)
-        {
-            Debug.Log(points[i].transform.position.magnitude);
-        }
+
         //Debug.Log(isCooldownOver());
         if (isCooldownOver())
         {

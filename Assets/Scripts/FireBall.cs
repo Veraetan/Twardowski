@@ -17,7 +17,7 @@ public class FireBall : Ability {
             dir.Normalize();
 
             Rigidbody piece = Instantiate(fireball, shooterPos, transform.rotation) as Rigidbody;
-            piece.GetComponent<Rigidbody>().velocity = dir * 10;
+            //piece.GetComponent<Rigidbody>().velocity = dir * 10;
         }
     }
 }

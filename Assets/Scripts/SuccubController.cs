@@ -27,8 +27,9 @@ public class SuccubController : BasicEnemy_Controler {
         if(distance < 20f)
         {
             lookForObstacles();
-            if (!shouldJump)
+            if (shouldJump)
             {
+                Debug.Log("casting");
                 fb.cast(player);
             }
         }
@@ -44,11 +45,17 @@ public class SuccubController : BasicEnemy_Controler {
 
     protected new void lookForObstacles()
     {
+        Vector3 tmp = chaseDir;
+        tmp.y += 1;
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 20f))    //check if there is an obstacle on your way
+        if (Physics.Raycast(transform.position, tmp.normalized, out hit, 20f))    //check if there is an obstacle in your way
         {
-            if (hit.collider.tag != "Player")  //if there is an obstacle - jump
+           // Debug.Log(player.transform.position + "||" + hit.transform.position);
+            if (hit.collider.tag == "Player")  //if there is an obstacle - jump
+            {
+               // Debug.Log("found!");
                 shouldJump = true;
+            }
         }
     }
 }

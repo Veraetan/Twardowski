@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : CharController
 {
@@ -90,7 +91,7 @@ public class PlayerController : CharController
             {
                 health = 0;
                 Debug.Log("Player Died");
-                Application.LoadLevel(Application.loadedLevel);
+                //Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
             }
             else if (health > health_max)
                 health = health_max;
