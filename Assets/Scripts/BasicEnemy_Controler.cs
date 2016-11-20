@@ -3,56 +3,71 @@ using System.Collections;
 
 
 [RequireComponent(typeof(CharacterController))]
-public class BasicEnemy_Controler : CharController {
+public abstract class BasicEnemy_Controler : CharController {
 
-    private bool jump;
+    protected bool shouldJump = false;
+    protected GameObject player;
+    protected Vector3 chaseDir;
+    protected float distance;
     
-    GameObject player;
-
-	// Use this for initialization
-	void Start () {
-        initiate(6, 8, 50, 50, 90);
-        player = GameObject.FindGameObjectWithTag("Player");
-        jump = false;
-    }
-	
     void FixedUpdate () {
 
-        Vector3 chaseDir = player.transform.position - transform.position;
-        float distance = chaseDir.magnitude;
+        setChaseDir();
 
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, chaseDir/chaseDir.magnitude, out hit, 1.5f))    //check if there is an obstacle on your way
-        {
-            if(hit.collider.tag!="Player")  //if there is an obstacle - jump
-                jump = true;
-        }
+        lookForObstacles();
 
         if (distance <= 1.5f)   //if the player is close...
         {
-
-            GetComponent<ImpAttack>().attack(player);
-            addSpd(direction.hor, 0);
+            attack();
         }
         else
         {
             if (cc.isGrounded)  //if monster is on the ground...
             {
-                if (jump)   //...and should jump...
+                if (shouldJump)   //...and should jump...
                 {
-                    addSpd(direction.ver, 1);     //then jump
-                    jump = false;
+                    jump();     //then jump
                 }
             }
 
-            if (distance <= 10f)
-                addSpd(direction.hor, chaseDir.normalized.x);
-            else
-                addSpd(direction.hor, 0);
+            approachPlayer();
         }
 
         move();
 
     }
+
+    public abstract void attack();
+
+    protected void jump()
+    {
+        addSpd(direction.ver, 1);     //then jump
+        shouldJump = false;
+    }
+
+    protected void approachPlayer()
+    {
+        if (distance <= 10f)
+            addSpd(direction.hor, chaseDir.normalized.x);
+        else
+            addSpd(direction.hor, 0);
+    }
+
+    protected void setChaseDir()
+    {
+        chaseDir = player.transform.position - transform.position;
+        distance = chaseDir.magnitude;
+    }
+
+    protected void lookForObstacles()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, chaseDir / chaseDir.magnitude, out hit, 1.5f))    //check if there is an obstacle on your way
+        {
+            if (hit.collider.tag != "Player")  //if there is an obstacle - jump
+                shouldJump = true;
+        }
+    }
+        
     
 }

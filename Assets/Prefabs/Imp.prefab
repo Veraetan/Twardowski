@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013238419894}
   - 143: {fileID: 143000010896050728}
-  - 114: {fileID: 114000011977178216}
   - 114: {fileID: 114000010148028598}
+  - 114: {fileID: 114000010719029114}
   m_Layer: 11
-  m_Name: Enemy_Basic
+  m_Name: Imp
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc8db2dea51f2548b11eb8ed33fc15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114000011977178216
+--- !u!114 &114000010719029114
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011262530356}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40657aa537c9d634ca6d929127065496, type: 3}
+  m_Script: {fileID: 11500000, guid: 687353201d3fcc94dbb8c1d478e39b6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
