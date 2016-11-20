@@ -9,29 +9,25 @@ public abstract class BasicEnemy_Controler : CharController {
     protected GameObject player;
     protected Vector3 chaseDir;
     protected float distance;
-    
-    void FixedUpdate () {
+
+    void FixedUpdate()
+    {
 
         setChaseDir();
 
         lookForObstacles();
 
         if (distance <= 1.5f)   //if the player is close...
-        {
+        {  
             attack();
+            shouldJump = false;
         }
         else
         {
-            if (cc.isGrounded)  //if monster is on the ground...
-            {
-                if (shouldJump)   //...and should jump...
-                {
-                    jump();     //then jump
-                }
-            }
-
             approachPlayer();
+            if (cc.isGrounded && shouldJump) jump();
         }
+
 
         move();
 
@@ -62,7 +58,7 @@ public abstract class BasicEnemy_Controler : CharController {
     protected void lookForObstacles()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, chaseDir / chaseDir.magnitude, out hit, 1.5f))    //check if there is an obstacle on your way
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 1.5f))    //check if there is an obstacle on your way
         {
             if (hit.collider.tag != "Player")  //if there is an obstacle - jump
                 shouldJump = true;

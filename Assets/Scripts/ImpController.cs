@@ -18,21 +18,16 @@ public class ImpController : BasicEnemy_Controler {
         lookForObstacles();
 
         if (distance <= 1.5f)   //if the player is close...
-        {
+        {  
             attack();
+            shouldJump = false;
         }
         else
         {
-            if (cc.isGrounded)  //if monster is on the ground...
-            {
-                if (shouldJump)   //...and should jump...
-                {
-                    jump();     //then jump
-                }
-            }
-
             approachPlayer();
+            if (cc.isGrounded && shouldJump) jump();
         }
+        
 
         move();
 
@@ -41,7 +36,7 @@ public class ImpController : BasicEnemy_Controler {
     public override void attack()
     {
         GetComponent<ImpAttack>().attack(player);
-        addSpd(direction.hor, 0);
+        //addSpd(direction.hor, 0);
     }
 
 }
