@@ -35,8 +35,11 @@ public class PlayerController : CharController
         {
             blocking = true;
         }
-        else
+        else if(Input.GetButtonUp("Fire2"))
+        {
             blocking = false;
+        }
+           
 
         if (jumps != 0 && Input.GetButtonDown("Jump"))
         {

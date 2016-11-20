@@ -29,7 +29,7 @@ public class SuccubController : BasicEnemy_Controler {
             lookForObstacles();
             if (shouldJump)
             {
-                Debug.Log("casting");
+               // Debug.Log("casting");
                 fb.cast(player);
             }
         }
