@@ -64,7 +64,7 @@ public abstract class BasicEnemy_Controler : CharController {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, 1.5f))    //check if there is an obstacle on your way
         {
-            if (hit.collider.tag != "Player" && hit.collider.tag != "Enemy")  //if there is an obstacle - jump
+            if (hit.collider.tag != "Player" && hit.collider.tag != "Enemy" && distance < 10f)  //if there is an obstacle - jump
                 shouldJump = true;
         }
     }
