@@ -23,22 +23,22 @@ public class FireBallPrefab : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponentInParent<CharacterController>().tag == "Player" && !blocked)
+        if ((other.tag == "Tmp" || other.tag == "Player") && !blocked)
         {
-            if (other.GetComponent<PlayerController>().blocking)
+            if (other.GetComponentInParent<PlayerController>().blocking)
             {
-                Debug.Log(dir);
+                //Debug.Log(dir);
                 Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z)); //15 is camera distance
                 Vector3 shooterPos = other.transform.position;
                 shooterPos.y += 1;
                 dir = mousePos - shooterPos;
-                Debug.Log(dir);
+                //Debug.Log(dir);
                 dir.Normalize();
                 blocked = true;
             }
             else
             {
-                other.gameObject.GetComponent<PlayerController>().addHealth(-15);
+                other.gameObject.GetComponentInParent<PlayerController>().addHealth(-15);
                 Destroy(gameObject);
             }
             
@@ -48,7 +48,7 @@ public class FireBallPrefab : MonoBehaviour {
             other.gameObject.GetComponent<CharController>().addHealth(-25);
             Destroy(gameObject);
         }
-        else if(other.tag != "Enemy")
+        else if(other.tag != "Enemy" && other.tag != "Player")
         {
             Destroy(gameObject);
         }

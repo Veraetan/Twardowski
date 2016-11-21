@@ -19,11 +19,11 @@ public class Ability : MonoBehaviour
         range = r;
     }
 
-    protected float cooldownPercentage()
+    public float cooldownPercentage()
     {
         if(Time.time >= nextUsageTime) return 0;
         var startTime = nextUsageTime - cooldownTime;
-        return (Time.time - startTime) / (nextUsageTime - startTime);
+        return 1 - (Time.time - startTime) / (nextUsageTime - startTime);
     }
 
     protected float cooldownTimeRemaining()

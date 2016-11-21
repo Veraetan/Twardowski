@@ -70,8 +70,9 @@ public class PlayerController : CharController
         {
             GUI.GetComponent<Score>().score = score;
             GUI.GetComponent<Score>().health = health;
+            GUI.GetComponent<Score>().cooldown = gameObject.GetComponent<FireStrike>().cooldownPercentage();
         }
-        
+        if (Input.GetKeyDown(KeyCode.E)) { gameObject.GetComponent<FireStrike>().cast(); }
     }
 
     // Update is called once per frame
@@ -84,7 +85,7 @@ public class PlayerController : CharController
             jumps = jumps_max;
         }
 
-        if (Input.GetKeyDown(KeyCode.E)) { gameObject.GetComponent<FireStrike>().cast(); }
+        
     }
 
     public void addHealth(short add, GameObject other)

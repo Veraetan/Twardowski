@@ -6,12 +6,14 @@ public class Score : MonoBehaviour {
 
     public int score;
     public int health;
+    public float cooldown;
     Text text;
 	// Use this for initialization
 	void Start () {
         text = GetComponentInChildren<Text>();
         score = 0;
         health = 0;
+        cooldown = 0;
 	}
 	
 	// Update is called once per frame
@@ -22,5 +24,7 @@ public class Score : MonoBehaviour {
             text.text += "DEAD";
         else
             text.text += health;
+
+        text.text += "\nCooldown: " + (cooldown);
 	}
 }

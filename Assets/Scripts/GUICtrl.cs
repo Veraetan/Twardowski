@@ -24,6 +24,6 @@ public class GUICtrl : MonoBehaviour {
         rt.sizeDelta = new Vector2(((float)health / (float)mhealth)*size, rt.sizeDelta.y);
         rt.position = new Vector3(size/2 + posX - (size-(((float)health / (float)mhealth) * size/2)), rt.position.y, rt.position.z);
 
-        Debug.Log((float)health / (float)mhealth);
+        //Debug.Log((float)health / (float)mhealth);
     }
 }
