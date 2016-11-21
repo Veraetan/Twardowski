@@ -78,7 +78,9 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013064576716}
-  m_Text: 100/100
+  m_Text: 'hp/maxhp
+
+'
   m_OffsetZ: 0
   m_CharacterSize: 0.08
   m_LineSpacing: 1

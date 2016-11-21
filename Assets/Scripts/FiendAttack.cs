@@ -15,7 +15,7 @@ public class FiendAttack : Ability {
             startCooldown();
             target.GetComponent<PlayerController>().addHealth(-20, gameObject);  //attack him
 
-            Debug.Log("player health: " + target.GetComponent<PlayerController>().health);
+            //Debug.Log("player health: " + target.GetComponent<PlayerController>().health);
         }
     }
 }

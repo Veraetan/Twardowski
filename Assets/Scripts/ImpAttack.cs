@@ -16,7 +16,7 @@ public class ImpAttack : Ability {
             startCooldown();
             target.GetComponent<PlayerController>().addHealth(-10, gameObject);  //attack him
 
-            Debug.Log("player health: " + target.GetComponent<PlayerController>().health);
+            //Debug.Log("player health: " + target.GetComponent<PlayerController>().health);
         }
     }
 }

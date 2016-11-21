@@ -40,6 +40,7 @@ public class FiendController : BasicEnemy_Controler {
         {
             attack();
             isSuperjumping = false;
+            move();
         }
         else
         {
