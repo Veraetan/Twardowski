@@ -34,10 +34,13 @@ public class PlayerController : CharController
         if (Input.GetButton("Fire2"))
         {
             blocking = true;
+            transform.Find("BlockTextMesh").gameObject.SetActive(true);
+            
         }
         else if(Input.GetButtonUp("Fire2"))
         {
             blocking = false;
+            transform.Find("BlockTextMesh").gameObject.SetActive(false);
         }
            
 
