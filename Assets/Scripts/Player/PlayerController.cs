@@ -97,7 +97,7 @@ public class PlayerController : CharController
             {
                 health = 0;
                 Debug.Log("Player Died");
-                //Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+                Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
             }
             else if (health > health_max)
                 health = health_max;

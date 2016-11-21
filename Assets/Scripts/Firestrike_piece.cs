@@ -12,8 +12,14 @@ public class Firestrike_piece : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Enemy")
+        if (other.tag == "Enemy")
+        {
             other.gameObject.GetComponent<CharController>().addHealth(-5);
+        }
+        else if (other.tag == "Terrain")
+        {
+            Destroy(gameObject);
+        }
     }
     
 }
