@@ -16,5 +16,6 @@ public class Data : MonoBehaviour {
                 PlayerPrefs.SetInt("saved", 0);
             }
         }
+        Debug.Log(PlayerPrefs.GetInt("saved"));
     }
 }

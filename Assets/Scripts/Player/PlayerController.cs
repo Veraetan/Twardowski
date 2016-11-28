@@ -16,6 +16,7 @@ public class PlayerController : CharController
 
     void Start()
     {
+        transform.Find("SaveTextMesh").gameObject.SetActive(false);
         data = FindObjectOfType<Data>();
         save = false;
         countering = false;
@@ -133,7 +134,15 @@ public class PlayerController : CharController
                 health = 0;
                 died = true;
                 Debug.Log("Player Died");
-                SceneManager.LoadScene(PlayerPrefs.GetInt("scene"));
+                if(PlayerPrefs.GetInt("saved") == 1)
+                {
+                    SceneManager.LoadScene(PlayerPrefs.GetInt("scene"));
+                }
+                else
+                {
+                    SceneManager.LoadScene("Prototype - Veraetan");
+                }
+                
             }
             else if (health > health_max)
                 health = health_max;

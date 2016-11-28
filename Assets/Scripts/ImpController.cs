@@ -7,6 +7,7 @@ public class ImpController : BasicEnemy_Controler {
     
     
     void Start () {
+        
         initiate(6, 8, 50, 50, 90);
         player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
@@ -39,8 +40,12 @@ public class ImpController : BasicEnemy_Controler {
     {
         setChaseDir();
         lookForPlayer();
-
-        if (playerDetected)
+        if (dazed)
+        {
+            undaze();
+            agent.enabled = false;
+        }
+        else if (playerDetected)
         {
             if (distance <= 1.5)
             {

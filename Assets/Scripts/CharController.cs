@@ -101,7 +101,7 @@ public class CharController : MonoBehaviour {
         dazeTime = Time.time;
     }
 
-    void undaze()
+    protected void undaze()
     {
         if (dazeTime + 2 < Time.time)
             dazed = false;

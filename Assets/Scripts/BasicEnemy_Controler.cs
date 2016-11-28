@@ -10,7 +10,7 @@ public abstract class BasicEnemy_Controler : CharController {
         isTraversingOffMeshLink = false;
     protected GameObject player;
     protected Vector3 chaseDir;
-    protected float distance;
+    protected float distance, timer;
     public Vector3 target;
     protected NavMeshAgent agent;
     protected float wanderTime = 0f;
@@ -62,9 +62,15 @@ public abstract class BasicEnemy_Controler : CharController {
             {
                 playerDetected = true;
                 target = player.transform.position;
+                timer = Time.time;
             }
-                
+            else if (timer+10>Time.time)
+            {
+                playerDetected = false;
+
+            }
         }
+
     }
 
     protected void wander()

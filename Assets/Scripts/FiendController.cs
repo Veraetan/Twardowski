@@ -18,8 +18,12 @@ public class FiendController : BasicEnemy_Controler {
 
         setChaseDir();
         lookForPlayer();
-
-        if (playerDetected)
+        if (dazed)
+        {
+            undaze();
+            agent.enabled = false;
+        }
+        else if (playerDetected)
         {
             if (distance <= 1.5)
             {
@@ -30,7 +34,7 @@ public class FiendController : BasicEnemy_Controler {
             else
             {
                 agent.enabled = true;
-                agent.SetDestination(target);/*
+                agent.SetDestination(target);
                 if(distance < 8 && distance > 6 && !isSuperjumping && player.GetComponent<CharacterController>().isGrounded)
                 {
                     //agent.enabled = false;
@@ -38,7 +42,7 @@ public class FiendController : BasicEnemy_Controler {
                     StartCoroutine(Hop(target, 0.4f));
                     agent.Resume();
                     //agent.enabled = true;
-                }*/
+                }
                     
             }
         }
