@@ -5,7 +5,7 @@ public class FiendAttack : Ability {
     
 	void Start()
     {
-        Initialize(2, 0, 0);
+        Initialize(1, 0, 0);
     }
 	
 	public void attack(GameObject target) {

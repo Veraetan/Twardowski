@@ -9,8 +9,10 @@ public class ImpController : BasicEnemy_Controler {
     void Start () {
         initiate(6, 8, 50, 50, 90);
         player = GameObject.FindGameObjectWithTag("Player");
+        agent = GetComponent<NavMeshAgent>();
+        
     }
-	
+	/*
 	void FixedUpdate () {
 
         setChaseDir();
@@ -30,6 +32,36 @@ public class ImpController : BasicEnemy_Controler {
         
 
         move();
+
+    }*/
+
+    void Update()
+    {
+        setChaseDir();
+        lookForPlayer();
+
+        if (playerDetected)
+        {
+            if (distance <= 1.5)
+            {
+                attack();
+                agent.enabled = false;
+                
+            }
+            else
+            {
+                agent.enabled = true;
+                agent.SetDestination(target);
+            }
+        }
+        else
+        {
+            wander();
+        }
+
+        Vector3 pos = transform.position;
+        pos.z = 0;
+        transform.position = pos;
 
     }
 
