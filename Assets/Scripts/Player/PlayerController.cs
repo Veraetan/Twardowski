@@ -4,7 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : CharController
 {
-    public bool left, blocking, countering;
+    Data data;
+    float timer;
+    public bool left, blocking, countering, save, died = false;
     public int score;
     public byte jumps;
     public byte jumps_max;
@@ -14,11 +16,23 @@ public class PlayerController : CharController
 
     void Start()
     {
+        data = FindObjectOfType<Data>();
+        save = false;
         countering = false;
         left = false;
         blocking = false;
-        initiate(8, 10, 100, 100, 0);
-        score = 0;
+        if(PlayerPrefs.GetInt("saved") == 1 && died)
+        {
+            initiate(8, 15, (short)PlayerPrefs.GetInt("health"), data.hpM, 0);
+            score = PlayerPrefs.GetInt("score");
+            transform.position = new Vector3(PlayerPrefs.GetFloat("playerX"), PlayerPrefs.GetFloat("playerY"), 0);
+        }
+        else
+        {
+            initiate(8, 15, data.hp, data.hpM, 0);
+            score = data.score;
+        }
+        
         jumps_max = 2;
         jumps = jumps_max;
         charCtrl = GetComponent<CharacterController>();
@@ -29,6 +43,17 @@ public class PlayerController : CharController
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
+        }
+        if (Input.GetKeyDown(KeyCode.F) && save)
+        {
+            PlayerPrefs.SetInt("health", health);
+            PlayerPrefs.SetFloat("playerX", transform.position.x);
+            PlayerPrefs.SetFloat("playerY", transform.position.y);
+            PlayerPrefs.SetInt("score", score);
+            PlayerPrefs.SetInt("saved", 1);
+            PlayerPrefs.SetInt("scene", SceneManager.GetActiveScene().buildIndex);
+            Debug.Log("Game Saved. Health: " + PlayerPrefs.GetInt("health") + " Score: " + PlayerPrefs.GetInt("score"));
+            timer = Time.time;
         }
 
         if (Input.GetButton("Fire2"))
@@ -73,6 +98,15 @@ public class PlayerController : CharController
             GUI.GetComponent<Score>().cooldown = gameObject.GetComponent<FireStrike>().cooldownPercentage();
         }
         if (Input.GetKeyDown(KeyCode.E)) { gameObject.GetComponent<FireStrike>().cast(); }
+
+        if(timer+2 > Time.time)
+        {
+            transform.Find("SaveTextMesh").gameObject.SetActive(true);
+        }
+        else
+        {
+            transform.Find("SaveTextMesh").gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -97,8 +131,9 @@ public class PlayerController : CharController
             if (health <= 0)
             {
                 health = 0;
+                died = true;
                 Debug.Log("Player Died");
-                Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+                SceneManager.LoadScene(PlayerPrefs.GetInt("scene"));
             }
             else if (health > health_max)
                 health = health_max;

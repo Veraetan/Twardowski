@@ -8,6 +8,8 @@ TagManager:
   - Terrain
   - TelePoint
   - Tmp
+  - Data
+  - Treasure
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - Char
   - Projectiles
   - Characters
-  - 
+  - Camera
   - 
   - 
   - 

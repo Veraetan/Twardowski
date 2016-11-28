@@ -28,7 +28,7 @@ public class FireBallPrefab : MonoBehaviour {
             if (other.GetComponentInParent<PlayerController>().blocking)
             {
                 //Debug.Log(dir);
-                Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z)); //15 is camera distance
+                Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y+1, -Camera.main.transform.position.z)); //15 is camera distance
                 Vector3 shooterPos = other.transform.position;
                 shooterPos.y += 1;
                 dir = mousePos - shooterPos;
@@ -48,7 +48,7 @@ public class FireBallPrefab : MonoBehaviour {
             other.gameObject.GetComponent<CharController>().addHealth(-25);
             Destroy(gameObject);
         }
-        else if(other.tag != "Enemy" && other.tag != "Player")
+        else if(other.tag == "Terrain")
         {
             Destroy(gameObject);
         }

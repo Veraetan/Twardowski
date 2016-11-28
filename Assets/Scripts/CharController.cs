@@ -20,7 +20,7 @@ public class CharController : MonoBehaviour {
     {
         dazed = false;
         rotOffset = ro;
-        grav = 20;
+        grav = 30;
         moveSpd = ms;
         jumpSpd = js;
         health = h;
