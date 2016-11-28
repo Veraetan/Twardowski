@@ -5,7 +5,9 @@ using System.Collections;
 [RequireComponent(typeof(CharacterController))]
 public abstract class BasicEnemy_Controler : CharController {
 
-    protected bool shouldJump = false, playerDetected = false;
+    protected bool shouldJump = false,
+        playerDetected = false,
+        isTraversingOffMeshLink = false;
     protected GameObject player;
     protected Vector3 chaseDir;
     protected float distance;
@@ -69,7 +71,7 @@ public abstract class BasicEnemy_Controler : CharController {
     {
         if(Time.time >= wanderTime)
         {
-            
+            agent.enabled = true;
             float side = Random.Range(-1f, 1f);
             Vector3 wanderTarget = transform.position;
             wanderTarget += new Vector3(4*side, 0, 0);
@@ -77,6 +79,6 @@ public abstract class BasicEnemy_Controler : CharController {
             target = wanderTarget;
             agent.SetDestination(target);
         }
-        agent.enabled = true;
+        
     }
 }

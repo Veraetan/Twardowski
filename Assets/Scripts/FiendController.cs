@@ -14,7 +14,7 @@ public class FiendController : BasicEnemy_Controler {
         agent = GetComponent<NavMeshAgent>();
     }
 	
-	void Update () {
+	void FixedUpdate () {
 
         setChaseDir();
         lookForPlayer();
@@ -30,12 +30,14 @@ public class FiendController : BasicEnemy_Controler {
             else
             {
                 agent.enabled = true;
-                agent.SetDestination(target);
-                /*if(distance < 8 && distance > 6 && !isSuperjumping)
+                agent.SetDestination(target);/*
+                if(distance < 8 && distance > 6 && !isSuperjumping && player.GetComponent<CharacterController>().isGrounded)
                 {
-                    agent.enabled = false;
-                    StartCoroutine(superJump(2.0f, 0.5f));
-                    agent.enabled = true;
+                    //agent.enabled = false;
+                    agent.Stop();
+                    StartCoroutine(Hop(target, 0.4f));
+                    agent.Resume();
+                    //agent.enabled = true;
                 }*/
                     
             }
@@ -131,6 +133,28 @@ public class FiendController : BasicEnemy_Controler {
         //agent.enabled = true;
     }
 
+    IEnumerator Hop(Vector3 dest, float time)
+    {
+        if (isSuperjumping) yield break;
 
+        agent.enabled = false;
+        isSuperjumping = true;
+        var startPos = transform.position;
+        var timer = 0.0f;
 
+        while (timer <= 1.0f)
+        {
+            var height = Mathf.Sin(Mathf.PI * timer) * 1;
+            transform.position = Vector3.Lerp(startPos, dest, timer) + Vector3.up * height;
+
+            timer += Time.deltaTime / time;
+            yield return null;
+        }
+        isSuperjumping = false;
+        agent.enabled = true;
+    }
 }
+
+
+
+
