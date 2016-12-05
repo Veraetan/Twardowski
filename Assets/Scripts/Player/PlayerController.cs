@@ -118,9 +118,17 @@ public class PlayerController : CharController
     public void addHealth(short add, GameObject other)
     {
         
-        if (health > 0 && !blocking)
+        if (health > 0)
         {
-            health += add;
+            if (blocking)
+            {
+                health += (short)Mathf.Ceil((float)add*0.1f);
+            }
+            else
+            {
+                health += add;
+            }
+            
             if (health <= 0)
             {
                 health = 0;
