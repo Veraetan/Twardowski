@@ -10,32 +10,10 @@ public class ImpController : BasicEnemy_Controler {
         
         initiate(6, 8, 50, 50, 90);
         player = GameObject.FindGameObjectWithTag("Player");
-        agent = GetComponent<NavMeshAgent>();
+        //agent = GetComponent<NavMeshAgent>();
         
     }
 	/*
-	void FixedUpdate () {
-
-        setChaseDir();
-
-        lookForObstacles();
-
-        if (distance <= 1.5f)   //if the player is close...
-        {  
-            attack();
-            shouldJump = false;
-        }
-        else
-        {
-            approachPlayer();
-            if (cc.isGrounded && shouldJump) jump();
-        }
-        
-
-        move();
-
-    }*/
-
     void Update()
     {
         setChaseDir();
@@ -74,6 +52,6 @@ public class ImpController : BasicEnemy_Controler {
     {
         GetComponent<ImpAttack>().attack(player);
         //addSpd(direction.hor, 0);
-    }
+    }*/
 
 }

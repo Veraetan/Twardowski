@@ -8,36 +8,34 @@ public class FiendSuperjump : Ability {
 	}
 
     public void doSuperjump(GameObject target) {
-        StartCoroutine(superjump(target));
-        //GetComponent<FiendController>().shouldSuperjump = false;
+        StartCoroutine(jump(target.transform.position, 0.4f));
     }
 	
-	private IEnumerator superjump (GameObject target) {
+	
 
-        float dist = Vector3.Distance(transform.position, target.transform.position);
+    IEnumerator jump(Vector3 dest, float time)
+    {
+        if (GetComponent<StatePatternFiend>().isSuperjumping) yield break;
 
-
-        if (isCooldownOver() && dist > range-1 && dist < range+1)
+        if (isCooldownOver())
         {
             startCooldown();
-            yield return new WaitForSeconds(castTime);
-            //GetComponent<FiendController>().shouldSuperjump = true;
-        }
-        
-    }
+            //GetComponent<StatePatternFiend>().agent.enabled = false;
+            GetComponent<StatePatternFiend>().isSuperjumping = true;
+            var startPos = transform.position;
+            var timer = 0.0f;
 
-    IEnumerator Parabola(NavMeshAgent agent, float height, float duration)
-    {
-        OffMeshLinkData data = agent.currentOffMeshLinkData;
-        Vector3 startPos = agent.transform.position;
-        Vector3 endPos = data.endPos + Vector3.up * agent.baseOffset;
-        float normalizedTime = 0.0f;
-        while (normalizedTime < 1.0f)
-        {
-            float yOffset = height * 4.0f * (normalizedTime - normalizedTime * normalizedTime);
-            agent.transform.position = Vector3.Lerp(startPos, endPos, normalizedTime) + yOffset * Vector3.up;
-            normalizedTime += Time.deltaTime / duration;
-            yield return null;
+            while (timer <= 1.0f)
+            {
+                var height = Mathf.Sin(Mathf.PI * timer) * 1;
+                transform.position = Vector3.Lerp(startPos, dest, timer) + Vector3.up * height;
+
+                timer += Time.deltaTime / time;
+                yield return null;
+            }
+            GetComponent<StatePatternFiend>().isSuperjumping = false;
+            //GetComponent<StatePatternFiend>().agent.enabled = true;
         }
+
     }
 }

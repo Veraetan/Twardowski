@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class SuccubController : BasicEnemy_Controler {
-
+    /*
     Teleport tele;
     FireBall fb;
     GameObject[] points;
@@ -57,5 +57,5 @@ public class SuccubController : BasicEnemy_Controler {
                 shouldJump = true;
             }
         }
-    }
+    }*/
 }

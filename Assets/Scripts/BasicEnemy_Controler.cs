@@ -18,15 +18,15 @@ public abstract class BasicEnemy_Controler : CharController {
     void Start()
     {
         initiate(6, 8, 50, 50, 90);
-        agent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        //agent = GetComponent<NavMeshAgent>();
+        //player = GameObject.FindGameObjectWithTag("Player");
     }
-    
+    /*
     public abstract void attack();
 
     protected void jump()
     {
-        addSpd(direction.ver, 1);     //then jump
+        addSpd(direction.ver, 1);
         shouldJump = false;
     }
 
@@ -87,4 +87,5 @@ public abstract class BasicEnemy_Controler : CharController {
         }
         
     }
+    */
 }

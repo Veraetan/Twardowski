@@ -19,11 +19,12 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000013238419894}
-  - 143: {fileID: 143000010896050728}
   - 114: {fileID: 114000010148028598}
   - 114: {fileID: 114000010719029114}
   - 195: {fileID: 195000010996279198}
   - 114: {fileID: 114000010428981600}
+  - 114: {fileID: 114000010783204752}
+  - 143: {fileID: 143000014289133908}
   m_Layer: 11
   m_Name: Imp
   m_TagString: Enemy
@@ -42,7 +43,7 @@ GameObject:
   - 33: {fileID: 33000012549337676}
   - 23: {fileID: 23000011182465506}
   m_Layer: 11
-  m_Name: Imp
+  m_Name: ImpMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +100,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011262530356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.69, y: 0.58, z: 0}
+  m_LocalPosition: {x: 7.4814696, y: 2, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -232,6 +233,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  isTraversing: 0
 --- !u!114 &114000010719029114
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -246,6 +248,25 @@ MonoBehaviour:
   health: 0
   health_max: 0
   target: {x: 0, y: 0, z: 0}
+--- !u!114 &114000010783204752
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011262530356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c0f21e01052cbf4eb2322bb291025bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  agent: {fileID: 0}
+  chaseDir: {x: 0, y: 0, z: 0}
+  targetForAgent: {x: 0, y: 0, z: 0}
+  distanceToPlayer: 0
+  wanderTime: 0
+  timeOfLastEyeContact: 0
+  sightRange: 15
 --- !u!114 &114000012957830970
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -257,7 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3032434b7469a9f4eaa2132ac21b55a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!143 &143000010896050728
+--- !u!143 &143000014289133908
 CharacterController:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -265,9 +286,9 @@ CharacterController:
   m_GameObject: {fileID: 1000011262530356}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Height: 1.8
+  m_Height: 1.7
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
