@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class SuccubController : BasicEnemy_Controler {
-    /*
+    
     Teleport tele;
     FireBall fb;
     GameObject[] points;
@@ -38,7 +38,7 @@ public class SuccubController : BasicEnemy_Controler {
         move();
     }
 
-    public override void attack()
+    public void attack()
     {
         
     }
@@ -57,5 +57,11 @@ public class SuccubController : BasicEnemy_Controler {
                 shouldJump = true;
             }
         }
-    }*/
+    }
+
+    protected void setChaseDir()
+    {
+        chaseDir = player.transform.position - transform.position;
+        distance = chaseDir.magnitude;
+    }
 }

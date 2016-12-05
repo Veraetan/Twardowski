@@ -20,7 +20,7 @@ public class FiendSuperjump : Ability {
         if (isCooldownOver())
         {
             startCooldown();
-            //GetComponent<StatePatternFiend>().agent.enabled = false;
+            GetComponent<StatePatternFiend>().agent.enabled = false;
             GetComponent<StatePatternFiend>().isSuperjumping = true;
             var startPos = transform.position;
             var timer = 0.0f;
@@ -33,8 +33,9 @@ public class FiendSuperjump : Ability {
                 timer += Time.deltaTime / time;
                 yield return null;
             }
+
             GetComponent<StatePatternFiend>().isSuperjumping = false;
-            //GetComponent<StatePatternFiend>().agent.enabled = true;
+            GetComponent<StatePatternFiend>().agent.enabled = true;
         }
 
     }

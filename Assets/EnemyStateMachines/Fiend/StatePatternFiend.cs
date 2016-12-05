@@ -41,7 +41,7 @@ public class StatePatternFiend : MonoBehaviour
         currentState = patrolState;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         currentState.UpdateState();
     }

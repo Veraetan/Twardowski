@@ -13,10 +13,12 @@ public class SuperjumpStateFiend : IEnemyState  {
     public void UpdateState()
     {
         enemy.setChaseDir();
-        enemy.GetComponent<AgentLinkMover>().enabled = false;
         jump();
-        enemy.GetComponent<AgentLinkMover>().enabled = true;
-        ToChaseState();
+        if (!enemy.isSuperjumping)
+        {
+            ToChaseState();
+        }
+        
     }
 
 

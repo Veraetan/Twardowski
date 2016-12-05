@@ -36,7 +36,7 @@ public class StatePatternImp : MonoBehaviour
         currentState = patrolState;
     }
     
-    void Update()
+    void FixedUpdate()
     {
         currentState.UpdateState();
     }
