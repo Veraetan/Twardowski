@@ -11,6 +11,7 @@ public class PlayerController : CharController
     public byte jumps;
     public byte jumps_max;
     CharacterController charCtrl;
+    public GameObject lvlCtrl;
     public Canvas GUI;
     // Use this for initialization
 
@@ -22,17 +23,9 @@ public class PlayerController : CharController
         countering = false;
         left = false;
         blocking = false;
-        if(PlayerPrefs.GetInt("saved") == 1 && died)
-        {
-            initiate(8, 15, (short)PlayerPrefs.GetInt("health"), data.hpM, 0);
-            score = PlayerPrefs.GetInt("score");
-            transform.position = new Vector3(PlayerPrefs.GetFloat("playerX"), PlayerPrefs.GetFloat("playerY"), 0);
-        }
-        else
-        {
-            initiate(8, 15, data.hp, data.hpM, 0);
-            score = data.score;
-        }
+        timer = -10;
+        initiate(8, 15, data.hp, data.hpM, 0);
+        score = data.score;
         
         jumps_max = 2;
         jumps = jumps_max;
@@ -52,7 +45,6 @@ public class PlayerController : CharController
             PlayerPrefs.SetFloat("playerY", transform.position.y);
             PlayerPrefs.SetInt("score", score);
             PlayerPrefs.SetInt("saved", 1);
-            PlayerPrefs.SetInt("scene", SceneManager.GetActiveScene().buildIndex);
             Debug.Log("Game Saved. Health: " + PlayerPrefs.GetInt("health") + " Score: " + PlayerPrefs.GetInt("score"));
             timer = Time.time;
         }
@@ -136,11 +128,13 @@ public class PlayerController : CharController
                 Debug.Log("Player Died");
                 if(PlayerPrefs.GetInt("saved") == 1)
                 {
-                    SceneManager.LoadScene(PlayerPrefs.GetInt("scene"));
+                    health = (short)PlayerPrefs.GetInt("health");
+                    transform.position = new Vector3(PlayerPrefs.GetFloat("playerX"), PlayerPrefs.GetFloat("playerY"), 0 );
+                    lvlCtrl.GetComponent<Level_Controller>().despawn();
                 }
                 else
                 {
-                    SceneManager.LoadScene("Prototype - Veraetan");
+                    Scene sc = SceneManager.GetActiveScene(); SceneManager.LoadScene(sc.name);
                 }
                 
             }

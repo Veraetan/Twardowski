@@ -17,7 +17,7 @@ public class FireBallPrefab : MonoBehaviour {
 
     void FixedUpdate()
     {
-        GetComponent<Rigidbody>().velocity = dir * 10;
+        GetComponent<Rigidbody>().velocity = dir * 20;
         //Debug.Log(GetComponent<Rigidbody>().velocity);
     }
 
