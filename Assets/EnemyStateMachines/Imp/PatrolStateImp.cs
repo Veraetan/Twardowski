@@ -35,6 +35,13 @@ public class PatrolStateImp : IEnemyState
 
     }
 
+    public void toOffMeshLinkState()
+    {
+        enemy.agent.enabled = false;
+        enemy.previousState = this;
+        enemy.currentState = enemy.offMeshLinkState;
+    }
+
     private void look()
     {
         RaycastHit hit;
@@ -51,6 +58,8 @@ public class PatrolStateImp : IEnemyState
 
     void patrol()
     {
+        
+
         if (Time.time >= enemy.wanderTime)
         {
             enemy.agent.enabled = true;
@@ -60,6 +69,11 @@ public class PatrolStateImp : IEnemyState
             enemy.wanderTime += 2.5f;
             enemy.targetForAgent = wanderTarget;
             enemy.agent.SetDestination(enemy.targetForAgent);
+        }
+
+        if (enemy.agent.isOnOffMeshLink)
+        {
+            toOffMeshLinkState();
         }
     }
 }

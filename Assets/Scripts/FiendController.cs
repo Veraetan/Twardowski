@@ -3,16 +3,13 @@ using System.Collections;
 using System;
 
 public class FiendController : BasicEnemy_Controler {
-
-    public bool isSuperjumping = false;
-    private float jumpTime;
     
-
     void Start () {
         initiate(6, 8, 150, 150, 90);
         //player = GameObject.FindGameObjectWithTag("Player");
         //agent = GetComponent<NavMeshAgent>();
     }
+
 	/*
 	void FixedUpdate () {
 

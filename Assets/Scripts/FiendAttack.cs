@@ -23,6 +23,8 @@ public class FiendAttack : Ability {
     {
         //Debug.Log("coroutine");
 
+        GetComponent<StatePatternImp>().isAttacking = true;
+
         startCooldown();
         Color original = GetComponentInChildren<MeshRenderer>().material.color;
         GetComponentInChildren<MeshRenderer>().material.color = Color.red;
@@ -30,18 +32,32 @@ public class FiendAttack : Ability {
         yield return new WaitForSeconds(castTime * 0.5f);
 
         GetComponentInChildren<MeshRenderer>().material.color = Color.green;
+        float dazeReadyTime = Time.time;
 
         yield return new WaitForSeconds(castTime * 0.5f);
 
         GetComponentInChildren<MeshRenderer>().material.color = original;
-
-
+        
         if (GetComponent<StatePatternFiend>().distanceToPlayer < 1.5f)
-            target.GetComponent<PlayerController>().addHealth(-20, gameObject);
+        {
+            if (target.GetComponent<PlayerController>().blocking
+                && target.GetComponent<PlayerController>().blockingStartTime < Time.time
+                    && target.GetComponent<PlayerController>().blockingStartTime > dazeReadyTime)
+            {
+                GetComponent<StatePatternFiend>().shouldBeDazed = true;
+            }
+            else
+            {
+                target.GetComponent<PlayerController>().addHealth(-10, gameObject);
+            }
+
+        }
+
 
         Debug.Log("player health: " + target.GetComponent<PlayerController>().health);
         //Debug.Log("end coroutine");
 
+        GetComponent<StatePatternImp>().isAttacking = false;
 
     }
 }

@@ -19,6 +19,7 @@ public class AttackStateFiend : IEnemyState
 
     public void ToChaseState()
     {
+        enemy.agent.enabled = true;
         enemy.currentState = enemy.chaseState;
     }
 
@@ -27,17 +28,38 @@ public class AttackStateFiend : IEnemyState
 
     }
 
+    public void toOffMeshLinkState()
+    {
+
+    }
+
+    public void toDazeState()
+    {
+        enemy.agent.enabled = false;
+        enemy.shouldBeDazed = false;
+        enemy.isDazed = true;
+        enemy.dazeTime = Time.time;
+        enemy.currentState = enemy.dazeState;
+    }
+
     public void UpdateState()
     {
         attack(enemy.player);
-        ToChaseState();
+
+        if (enemy.shouldBeDazed)
+        {
+            toDazeState();
+        }
+
+        if (!enemy.isAttacking)
+            ToChaseState();
     }
 
     public void attack(GameObject target)
     {
-
-        enemy.agent.enabled = false;
+        
         enemy.GetComponent<FiendAttack>().attack(target);
-        enemy.agent.enabled = true;
     }
+
+    
 }

@@ -24,6 +24,7 @@ public class ChaseStateImp : IEnemyState
 
     public void ToPatrolState()
     {
+        enemy.agent.enabled = true;
         enemy.currentState = enemy.patrolState;
     }
 
@@ -34,7 +35,15 @@ public class ChaseStateImp : IEnemyState
 
     public void toAttackState()
     {
+        enemy.agent.enabled = false;
         enemy.currentState = enemy.attackState;
+    }
+
+    public void toOffMeshLinkState()
+    {
+        enemy.agent.enabled = false;
+        enemy.previousState = this;
+        enemy.currentState = enemy.offMeshLinkState;
     }
 
     private void look()
@@ -57,8 +66,17 @@ public class ChaseStateImp : IEnemyState
 
     private void chase()
     {
-        enemy.targetForAgent = enemy.player.transform.position;
-        enemy.agent.SetDestination(enemy.targetForAgent);
+        if (enemy.agent.isOnNavMesh)
+        {
+            
+            enemy.targetForAgent = enemy.player.transform.position;
+            enemy.agent.SetDestination(enemy.targetForAgent);
+
+            if (enemy.agent.isOnOffMeshLink)
+            {
+                toOffMeshLinkState();
+            }
+        }
     }
 
     private void attack()

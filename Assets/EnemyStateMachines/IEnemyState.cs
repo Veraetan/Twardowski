@@ -11,4 +11,6 @@ public interface IEnemyState
     void ToChaseState();
 
     void toAttackState();
+
+    void toOffMeshLinkState();
 }

@@ -18,10 +18,8 @@ public class SuperjumpStateFiend : IEnemyState  {
         {
             ToChaseState();
         }
-        
     }
-
-
+    
     public void ToPatrolState()
     {
         
@@ -29,6 +27,8 @@ public class SuperjumpStateFiend : IEnemyState  {
 
     public void ToChaseState()
     {
+        //Debug.Log("going to chase state");
+        enemy.agent.enabled = true;
         enemy.currentState = enemy.chaseState;
     }
 
@@ -41,14 +41,15 @@ public class SuperjumpStateFiend : IEnemyState  {
     {
         Debug.Log("Can't transition to same state");
     }
-    
-    public void jump()
+
+    public void toOffMeshLinkState()
     {
-        
-        enemy.GetComponent<FiendSuperjump>().doSuperjump(enemy.player);
-        
+        enemy.currentState = enemy.offMeshLinkState;
     }
 
+    public void jump()
+    {
+        enemy.GetComponent<FiendSuperjump>().doSuperjump(enemy.player);
+    }
     
-
 }

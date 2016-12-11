@@ -16,19 +16,20 @@ public class AgentLinkMover : MonoBehaviour
     public OffMeshLinkMoveMethod method = OffMeshLinkMoveMethod.Parabola;
     public AnimationCurve curve = new AnimationCurve();
     NavMeshAgent agent;
-    public bool isTraversing = false;
     public float timer = 0f;
-
+    public bool isTraversing = false;
+    
     void Update()
     {
-        if (agent.isOnOffMeshLink && !isTraversing)
+        if (agent.enabled)
         {
-            
-            isTraversing = true;
-            StartCoroutine(Parabola(agent, 2.0f, 0.7f));
-            
+            if (agent.isOnOffMeshLink && !isTraversing)
+            {
+                StartCoroutine(Parabola(agent, 2.0f, 0.7f));
+                if(!isTraversing)
+                    agent.CompleteOffMeshLink();
+            }
         }
-        
     }
 
     void Start()
@@ -37,6 +38,18 @@ public class AgentLinkMover : MonoBehaviour
         agent.autoTraverseOffMeshLink = false;
     }
 
+    /*
+    public void traverse()
+    {
+        if (agent.enabled)
+        {
+            if (agent.isOnOffMeshLink)
+            {
+                StartCoroutine(Parabola(agent, 2.0f, 0.7f));
+            }
+        }
+    }*/
+    
     /*
     IEnumerator Start()
     {
@@ -64,6 +77,7 @@ public class AgentLinkMover : MonoBehaviour
 
     IEnumerator Parabola(NavMeshAgent agent, float height, float duration)
     {
+        isTraversing = true;
         OffMeshLinkData data = agent.currentOffMeshLinkData;
         Vector3 startPos = agent.transform.position;
         Vector3 endPos = data.endPos + Vector3.up * agent.baseOffset;
@@ -76,9 +90,8 @@ public class AgentLinkMover : MonoBehaviour
             normalizedTime += Time.deltaTime / duration;
             yield return null;
         }
-        
+
         isTraversing = false;
-        agent.CompleteOffMeshLink();
     }
 
     IEnumerator NormalSpeed(NavMeshAgent agent)

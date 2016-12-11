@@ -31,12 +31,12 @@ public class Ability : MonoBehaviour
             return cooldownPercentage() * cooldownTime;
     }
 
-    protected bool isCooldownOver()
+    public bool isCooldownOver()
     {
         return (Time.time >= nextUsageTime);
     }
 
-    protected void startCooldown()
+    public void startCooldown()
     {
         nextUsageTime = Time.time + cooldownTime;
     }

@@ -7,7 +7,7 @@ public class StatePatternFiend : MonoBehaviour
     [HideInInspector]
     public GameObject player;
     [HideInInspector]
-    public IEnemyState currentState;
+    public IEnemyState currentState, previousState;
     [HideInInspector]
     public ChaseStateFiend chaseState;
     [HideInInspector]
@@ -17,20 +17,26 @@ public class StatePatternFiend : MonoBehaviour
     [HideInInspector]
     public SuperjumpStateFiend superjumpState;
     [HideInInspector]
+    public OffMeshLinkStateFiend offMeshLinkState;
+    [HideInInspector]
+    public DazeStateFiend dazeState;
+    [HideInInspector]
     public NavMeshAgent agent;
     [HideInInspector]
     public Vector3 chaseDir, targetForAgent;
     [HideInInspector]
-    public float distanceToPlayer, wanderTime, timeOfLastEyeContact, sightRange = 15;
+    public float distanceToPlayer, wanderTime, timeOfLastEyeContact, sightRange = 15, dazeTime;
     [HideInInspector]
-    public bool isSuperjumping = false;
+    public bool isSuperjumping = false, isAttacking = false, isDazed = false, shouldBeDazed = false;
 
     private void Awake()
     {
         chaseState = new ChaseStateFiend(this);
         patrolState = new PatrolStateFiend(this);
         attackState = new AttackStateFiend(this);
+        dazeState = new DazeStateFiend(this);
         superjumpState = new SuperjumpStateFiend(this);
+        offMeshLinkState = new OffMeshLinkStateFiend(this);
 
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -41,8 +47,9 @@ public class StatePatternFiend : MonoBehaviour
         currentState = patrolState;
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
+        setChaseDir();
         currentState.UpdateState();
     }
 

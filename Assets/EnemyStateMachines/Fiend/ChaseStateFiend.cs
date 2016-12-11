@@ -16,7 +16,7 @@ public class ChaseStateFiend : IEnemyState
     public void UpdateState()
     {
         enemy.setChaseDir();
-        //Debug.Log("I am in ChaseState");
+        
         look();
         chase();
         attack();
@@ -25,6 +25,7 @@ public class ChaseStateFiend : IEnemyState
 
     public void ToPatrolState()
     {
+        enemy.agent.enabled = true;
         enemy.currentState = enemy.patrolState;
     }
 
@@ -35,12 +36,22 @@ public class ChaseStateFiend : IEnemyState
 
     public void toAttackState()
     {
+        enemy.agent.enabled = false;
         enemy.currentState = enemy.attackState;
     }
 
     public void toSuperjumpState()
     {
+        enemy.agent.enabled = false;
         enemy.currentState = enemy.superjumpState;
+    }
+
+    public void toOffMeshLinkState()
+    {
+        //Debug.Log("going to off mesh link state");
+        enemy.agent.enabled = false;
+        enemy.previousState = this;
+        enemy.currentState = enemy.offMeshLinkState;
     }
 
     private void look()
@@ -63,8 +74,17 @@ public class ChaseStateFiend : IEnemyState
 
     private void chase()
     {
-        enemy.targetForAgent = enemy.player.transform.position;
-        enemy.agent.SetDestination(enemy.targetForAgent);
+        if (enemy.agent.isOnNavMesh)
+        {
+            enemy.targetForAgent = enemy.player.transform.position;
+            enemy.agent.SetDestination(enemy.targetForAgent);
+
+            if (enemy.agent.isOnOffMeshLink)
+            {
+                toOffMeshLinkState();
+            }
+        }
+
     }
 
     private void attack()
@@ -77,10 +97,19 @@ public class ChaseStateFiend : IEnemyState
 
     private void jump()
     {
-        if (enemy.distanceToPlayer < 8 && enemy.distanceToPlayer > 6 && !enemy.isSuperjumping)
+        RaycastHit hit;
+        //Debug.DrawRay(transform.position + new Vector3(0, 1.5f, 0), chaseDir, Color.red, 1);
+        if (Physics.Raycast(enemy.transform.position + new Vector3(0, 1.5f, 0), enemy.chaseDir, out hit))
         {
-            toSuperjumpState();
+            if (enemy.distanceToPlayer < 8 && enemy.distanceToPlayer > 6 && hit.collider.tag == "Player" && !enemy.isSuperjumping
+                    && enemy.player.GetComponent<CharacterController>().isGrounded && enemy.GetComponent<FiendSuperjump>().isCooldownOver())
+            {
+                toSuperjumpState();
+            }
         }
+
+
+        
     }
 
 }
