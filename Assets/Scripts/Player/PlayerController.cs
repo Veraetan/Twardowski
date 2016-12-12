@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 public class PlayerController : CharController
 {
     Data data;
-    float timer;
+    public float blockingStartTime;
+    float timer, fallProt;
     public bool left, blocking, countering, save, died = false;
     public int score;
     public byte jumps;
@@ -23,7 +24,8 @@ public class PlayerController : CharController
         countering = false;
         left = false;
         blocking = false;
-        timer = -10;
+        timer = -1;
+        fallProt = -1;
         initiate(8, 15, data.hp, data.hpM, 0);
         score = data.score;
         
@@ -48,7 +50,10 @@ public class PlayerController : CharController
             Debug.Log("Game Saved. Health: " + PlayerPrefs.GetInt("health") + " Score: " + PlayerPrefs.GetInt("score"));
             timer = Time.time;
         }
-
+        if (Input.GetButtonDown("Fire2"))
+        {
+            blockingStartTime = Time.time;
+        }
         if (Input.GetButton("Fire2"))
         {
             blocking = true;
@@ -60,18 +65,19 @@ public class PlayerController : CharController
             blocking = false;
             transform.Find("BlockTextMesh").gameObject.SetActive(false);
         }
-           
+
 
         if (jumps != 0 && Input.GetButtonDown("Jump"))
         {
             addSpd(direction.ver, 1);
+            fallProt = Time.time;
             jumps--;
         }
-        else if(cc.velocity.y<0 && Input.GetButton("Jump"))
+        else if (cc.velocity.y < 0 && Input.GetButton("Jump") && fallProt+0.1 < Time.time)
         {
             if (Input.GetAxis("Horizontal") > 0)
                 left = false;
-            else if(Input.GetAxis("Horizontal") < 0)
+            else if (Input.GetAxis("Horizontal") < 0)
                 left = true;
 
             if (left)
@@ -82,7 +88,9 @@ public class PlayerController : CharController
             addSpd(direction.ver, -1, 2);
         }
         else
+        {
             addSpd(direction.hor, Input.GetAxis("Horizontal"));
+        }
 
         if (GUI != null)
         {
@@ -122,7 +130,7 @@ public class PlayerController : CharController
         {
             if (blocking)
             {
-                health += (short)Mathf.Ceil((float)add*0.1f);
+                health += (short)Mathf.Ceil((float)add*0.5f);
             }
             else
             {

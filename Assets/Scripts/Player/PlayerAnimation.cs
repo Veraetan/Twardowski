@@ -6,11 +6,12 @@ public class PlayerAnimation : MonoBehaviour {
     Animator anim;
     public Transform shoulder;
     CharacterController cc;
-    bool attacked;
+    bool attacked, done;
 	// Use this for initialization
 	void Start () {
         cc = GetComponentInParent<CharacterController>();
         anim = GetComponent<Animator>();
+        done = true;
 	}
 	
 	// Update is called once per frame
@@ -26,21 +27,27 @@ public class PlayerAnimation : MonoBehaviour {
             anim.SetFloat("SpeedMod", 1);
             anim.SetFloat("Speed", 0);
         }
-        if (Input.GetButtonDown("Fire1") && attacked)
+        if (Input.GetButtonDown("Fire1") && attacked && done)
         {
             attacked = false;
             anim.Play("Attack2", 1);
+            done = false;
         }
-        else if (Input.GetButtonDown("Fire1") && !attacked)
+        else if (Input.GetButtonDown("Fire1") && !attacked && done)
         {
             attacked = true;
             anim.Play("Attack1", 1);
-
+            done = false;
         }
 
     }
     public void OnAnimEnd()
     {
         attacked = false;
+    }
+
+    public void NextAtt()
+    {
+        done = true;
     }
 }

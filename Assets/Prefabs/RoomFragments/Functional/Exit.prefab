@@ -102,4 +102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7601bf61b8343468d3bab79ace02d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  next: Prototype - Veraetan2
+  entryPoint: {x: 0, y: 0, z: 0}
+  lvlCtrl: {fileID: 0}
+  exit: {fileID: 0}
