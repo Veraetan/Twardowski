@@ -19,6 +19,7 @@ public class DazeStateImp : IEnemyState
 
     public void ToChaseState()
     {
+        enemy.isDazed = false;
         enemy.agent.enabled = true;
         enemy.currentState = enemy.chaseState;
     }

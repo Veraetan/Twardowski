@@ -23,7 +23,7 @@ public class FiendAttack : Ability {
     {
         //Debug.Log("coroutine");
 
-        GetComponent<StatePatternImp>().isAttacking = true;
+        GetComponent<StatePatternFiend>().isAttacking = true;
 
         startCooldown();
         Color original = GetComponentInChildren<MeshRenderer>().material.color;
@@ -48,7 +48,7 @@ public class FiendAttack : Ability {
             }
             else
             {
-                target.GetComponent<PlayerController>().addHealth(-10, gameObject);
+                target.GetComponent<PlayerController>().addHealth(-20, gameObject);
             }
 
         }
@@ -57,7 +57,7 @@ public class FiendAttack : Ability {
         Debug.Log("player health: " + target.GetComponent<PlayerController>().health);
         //Debug.Log("end coroutine");
 
-        GetComponent<StatePatternImp>().isAttacking = false;
+        GetComponent<StatePatternFiend>().isAttacking = false;
 
     }
 }

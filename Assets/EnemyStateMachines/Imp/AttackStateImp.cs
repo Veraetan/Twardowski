@@ -43,15 +43,16 @@ public class AttackStateImp : IEnemyState {
 
     public void UpdateState()
     {
-        attack(enemy.player);
+        if(!enemy.isAttacking)
+            attack(enemy.player);
+        
+        if(!enemy.isAttacking && !enemy.shouldBeDazed)
+            ToChaseState();
 
         if (enemy.shouldBeDazed)
         {
             toDazeState();
         }
-            
-        if(!enemy.isAttacking)
-            ToChaseState();
     }
     
     public void attack(GameObject target)
