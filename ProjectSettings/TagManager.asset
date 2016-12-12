@@ -10,7 +10,6 @@ TagManager:
   - Tmp
   - Data
   - Treasure
-  - Secret
   layers:
   - Default
   - TransparentFX

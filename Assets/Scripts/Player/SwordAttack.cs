@@ -20,22 +20,11 @@ public class SwordAttack : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (attacking)
+        if (other.tag == "Enemy" && attacking)
         {
-            
-            if (other.tag == "Enemy")
-            {
-                //Debug.Log("Hit enemy!");
-                other.gameObject.GetComponent<CharController>().addHealth(-25);
-            }
-            else if(other.tag == "Secret")
-            {
-                Debug.Log("secret!");
-                Destroy(other);
-            }
+            Debug.Log("Hit enemy!");
+            other.gameObject.GetComponent<CharController>().addHealth(-25);
         }
         
-        
     }
-
 }

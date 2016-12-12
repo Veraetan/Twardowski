@@ -24,7 +24,7 @@ GameObject:
   - 95: {fileID: 95000014259358356}
   - 65: {fileID: 65000013003047354}
   m_Layer: 0
-  m_Name: Cave_Wall_02
+  m_Name: Cave_Wall_02 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
