@@ -38,20 +38,23 @@ public class AttackStateImp : IEnemyState {
         enemy.shouldBeDazed = false;
         enemy.isDazed = true;
         enemy.dazeTime = Time.time;
+        enemy.originalColor = enemy.GetComponentInChildren<MeshRenderer>().material.color;
+        enemy.GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
         enemy.currentState = enemy.dazeState;
     }
 
     public void UpdateState()
     {
-        attack(enemy.player);
+        if(!enemy.isAttacking)
+            attack(enemy.player);
+        
+        if(!enemy.isAttacking && !enemy.shouldBeDazed)
+            ToChaseState();
 
         if (enemy.shouldBeDazed)
         {
             toDazeState();
         }
-            
-        if(!enemy.isAttacking)
-            ToChaseState();
     }
     
     public void attack(GameObject target)

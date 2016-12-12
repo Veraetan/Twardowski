@@ -28,6 +28,8 @@ public class StatePatternFiend : MonoBehaviour
     public float distanceToPlayer, wanderTime, timeOfLastEyeContact, sightRange = 15, dazeTime;
     [HideInInspector]
     public bool isSuperjumping = false, isAttacking = false, isDazed = false, shouldBeDazed = false;
+    [HideInInspector]
+    public Color originalColor;
 
     private void Awake()
     {

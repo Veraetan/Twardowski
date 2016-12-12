@@ -19,6 +19,7 @@ public class DazeStateImp : IEnemyState
 
     public void ToChaseState()
     {
+        enemy.isDazed = false;
         enemy.agent.enabled = true;
         enemy.currentState = enemy.chaseState;
     }
@@ -37,6 +38,7 @@ public class DazeStateImp : IEnemyState
     {
         if(Time.time > enemy.dazeTime + 2f)
         {
+            enemy.GetComponentInChildren<MeshRenderer>().material.color = enemy.originalColor;
             ToChaseState();
         }
     }
