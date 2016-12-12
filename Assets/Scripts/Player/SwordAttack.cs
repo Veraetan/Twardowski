@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 
 public class SwordAttack : MonoBehaviour
@@ -25,6 +26,6 @@ public class SwordAttack : MonoBehaviour
             Debug.Log("Hit enemy!");
             other.gameObject.GetComponent<CharController>().addHealth(-25);
         }
-        
+
     }
 }

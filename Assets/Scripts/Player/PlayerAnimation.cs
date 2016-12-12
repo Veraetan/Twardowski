@@ -1,21 +1,25 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 
-public class PlayerAnimation : MonoBehaviour {
+public class PlayerAnimation : MonoBehaviour
+{
 
     Animator anim;
     public Transform shoulder;
     CharacterController cc;
     bool attacked, done;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         cc = GetComponentInParent<CharacterController>();
         anim = GetComponent<Animator>();
         done = true;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         anim.SetBool("Grounded", cc.isGrounded);
         if (cc.velocity.x != 0)
         {

@@ -1,12 +1,15 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 
-public class Firestrike_piece : MonoBehaviour {
+public class Firestrike_piece : MonoBehaviour
+{
 
     public float lifetime = 3;
-    
-	void Start () {
-        
+
+    void Start()
+    {
+
         Destroy(gameObject, lifetime);
     }
 
@@ -21,5 +24,5 @@ public class Firestrike_piece : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-    
+
 }
