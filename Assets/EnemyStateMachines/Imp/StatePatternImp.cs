@@ -26,6 +26,8 @@ public class StatePatternImp : MonoBehaviour
     public float distanceToPlayer, wanderTime, timeOfLastEyeContact, sightRange = 15, dazeTime;
     [HideInInspector]
     public bool isAttacking = false, shouldBeDazed = false, isDazed = false;
+    [HideInInspector]
+    public Color originalColor;
 
     private void Awake()
     {

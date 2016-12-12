@@ -39,6 +39,8 @@ public class AttackStateFiend : IEnemyState
         enemy.shouldBeDazed = false;
         enemy.isDazed = true;
         enemy.dazeTime = Time.time;
+        enemy.originalColor = enemy.GetComponentInChildren<MeshRenderer>().material.color;
+        enemy.GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
         enemy.currentState = enemy.dazeState;
     }
 
