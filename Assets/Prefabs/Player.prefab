@@ -187,6 +187,7 @@ GameObject:
   - 143: {fileID: 143000014133488010}
   - 114: {fileID: 114000011580509550}
   - 114: {fileID: 114000013506024986}
+  - 114: {fileID: 114000010226924476}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -2152,6 +2153,17 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294901769
+--- !u!114 &114000010226924476
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010930337466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a45f18f466c2a694abb19d01ad48541f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000011321674102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2190,6 +2202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   health_max: 0
+  blockingStartTime: 0
   left: 0
   blocking: 0
   countering: 0
@@ -2198,6 +2211,7 @@ MonoBehaviour:
   score: 0
   jumps: 0
   jumps_max: 0
+  lvlCtrl: {fileID: 0}
   GUI: {fileID: 0}
 --- !u!114 &114000013506024986
 MonoBehaviour:
