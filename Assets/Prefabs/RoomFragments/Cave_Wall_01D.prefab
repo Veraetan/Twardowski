@@ -22,6 +22,7 @@ GameObject:
   - 33: {fileID: 33000013457802846}
   - 23: {fileID: 23000011943810348}
   - 95: {fileID: 95000013741887958}
+  - 65: {fileID: 65000011106891228}
   m_Layer: 11
   m_Name: Cave_Wall_01D
   m_TagString: Secret
@@ -78,6 +79,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013818442534}
   m_Mesh: {fileID: 4300000, guid: f7550161bd5d2d54a928be77c0624566, type: 3}
+--- !u!65 &65000011106891228
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013818442534}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.656554, y: 2.5, z: 2.534476}
+  m_Center: {x: -0.07827699, y: 0, z: 1.267238}
 --- !u!95 &95000013741887958
 Animator:
   serializedVersion: 3

@@ -25,6 +25,7 @@ GameObject:
   - 114: {fileID: 114000010428981600}
   - 114: {fileID: 114000010783204752}
   - 143: {fileID: 143000014289133908}
+  - 114: {fileID: 114000012922098310}
   m_Layer: 11
   m_Name: Imp
   m_TagString: Enemy
@@ -269,7 +270,22 @@ MonoBehaviour:
   wanderTime: 0
   timeOfLastEyeContact: 0
   sightRange: 15
+  dazeTime: 0
   isAttacking: 0
+  shouldBeDazed: 0
+  isDazed: 0
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &114000012922098310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011262530356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42ea0f1d5929e284bbdce58a00626e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000012957830970
 MonoBehaviour:
   m_ObjectHideFlags: 1

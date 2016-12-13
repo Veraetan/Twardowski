@@ -26,6 +26,7 @@ GameObject:
   - 114: {fileID: 114000010601845472}
   - 114: {fileID: 114000014075459316}
   - 114: {fileID: 114000012100523558}
+  - 114: {fileID: 114000011938299662}
   m_Layer: 0
   m_Name: Fiend
   m_TagString: Enemy
@@ -239,7 +240,6 @@ MonoBehaviour:
   health: 0
   health_max: 0
   target: {x: 0, y: 0, z: 0}
-  isSuperjumping: 0
 --- !u!114 &114000011370072344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -249,6 +249,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b57c320756c1a5849a98927714234f6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000011938299662
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010074580796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42ea0f1d5929e284bbdce58a00626e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114000012100523558
@@ -292,8 +303,12 @@ MonoBehaviour:
   wanderTime: 0
   timeOfLastEyeContact: 0
   sightRange: 15
+  dazeTime: 0
   isSuperjumping: 0
   isAttacking: 0
+  isDazed: 0
+  shouldBeDazed: 0
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!143 &143000010164314066
 CharacterController:
   m_ObjectHideFlags: 1
