@@ -17,7 +17,14 @@ public class Firestrike_piece : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            other.gameObject.GetComponent<CharController>().addHealth(-5);
+            //Debug.Log("Burning Enemy");
+            other.GetComponent<Burning>().startburning();
+        }
+        else if (other.tag == "Secret")
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+
         }
         else if (other.tag == "Terrain")
         {

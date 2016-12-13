@@ -23,7 +23,7 @@ public class SwordAttack : MonoBehaviour
     {
         if (other.tag == "Enemy" && attacking)
         {
-            Debug.Log("Hit enemy!");
+            //Debug.Log("Hit enemy!");
             other.gameObject.GetComponent<CharController>().addHealth(-25);
         }
 
